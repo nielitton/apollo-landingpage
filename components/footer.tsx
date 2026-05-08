@@ -54,7 +54,7 @@ export function Footer() {
               <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                 <p className="text-muted-foreground text-sm">
-                  (85) 0000-0000
+                  (85) 99638-3243
                 </p>
               </div>
               <div className="flex items-center gap-3">
