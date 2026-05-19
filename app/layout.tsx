@@ -17,23 +17,8 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: 'Apollo Vicz | Vereador de Fortaleza',
   description: 'Protetor Animal, Ativista e Vereador de Fortaleza. Lutando pela proteção animal e políticas públicas no Ceará.',
-  generator: 'v0.app',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: { url: '/icon.svg', type: 'image/svg+xml' },
   },
 }
 

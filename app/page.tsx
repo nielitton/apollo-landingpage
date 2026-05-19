@@ -4,6 +4,7 @@ import { HeroSection } from "@/components/hero-section"
 import { TimelineSection } from "@/components/timeline-section"
 import { StatsSection } from "@/components/stats-section"
 import { MissionSection } from "@/components/mission-section"
+import { ProjectsSection } from "@/components/projects-section"
 import { Footer } from "@/components/footer"
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <HeroSection />
       <StatsSection />
       <TimelineSection />
+      <ProjectsSection />
       <MissionSection />
       <Footer />
     </main>
