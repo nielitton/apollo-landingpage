@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { PawPrint, ChevronLeft, ChevronRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -19,7 +19,9 @@ const projects = [
     ],
     detail:
       "Dionísio Torres, Conjunto Ceará, Messejana, Papicu, Centro, Cuca da Barra, Conjunto Esperança, José Walter e Canindezinho estão entre os bairros contemplados pelos serviços.",
-    photos: [] as { src: string; alt: string }[],
+    photos: [
+      { src: "/images/parada-pet.jpeg", alt: "Parada Pet em ação na comunidade", objectPosition: "20% center", objectFit: "contain", maxHeight: "460px" },
+    ],
   },
   {
     name: "Circuito Pet",
@@ -33,7 +35,9 @@ const projects = [
     ],
     detail:
       "Shopping Rio Mar Kennedy, Jóquei e Via Sul estão entre os shoppings contemplados pelo serviço.",
-    photos: [] as { src: string; alt: string }[],
+    photos: [
+      { src: "/images/circuito-pet.jpeg", alt: "Circuito Pet em ação no shopping", objectFit: "contain", maxHeight: "460px" },
+    ],
   },
   {
     name: "Educa Animal",
@@ -46,7 +50,9 @@ const projects = [
     ],
     detail:
       "ETUFOR, FormaCE, IMPARH, Hospital Distrital Gonzaga Mota, AMC, Secretaria Regional V, Escola de Gestão Pública do Estado do Ceará, Shopping RioMar Fortaleza e North Shopping Jóquei estão entre os órgãos contemplados.",
-    photos: [] as { src: string; alt: string }[],
+    photos: [
+      { src: "/images/educa-animal.jpeg", alt: "Educa Animal em palestra", objectFit: "contain" },
+    ],
   },
   {
     name: "Carona Pet",
@@ -59,7 +65,9 @@ const projects = [
     ],
     detail:
       "O serviço atende animais em situação de urgência veterinária, cães e gatos doadores e animais acompanhados pelo Programa Veterinário Solidário.",
-    photos: [] as { src: string; alt: string }[],
+    photos: [
+      { src: "/images/carona-pet.jpeg", alt: "Carona Pet transportando animais", objectFit: "contain", maxHeight: "460px" },
+    ],
   },
   {
     name: "Grupo Terapêutico",
@@ -72,7 +80,9 @@ const projects = [
     ],
     detail:
       "Uma iniciativa voltada ao cuidado de quem cuida — protetores independentes e responsáveis por abrigos que dedicam suas vidas aos animais.",
-    photos: [] as { src: string; alt: string }[],
+    photos: [
+      { src: "/images/grupo-terapeutico.jpeg", alt: "Grupo Terapêutico para Protetores de Animais", objectFit: "contain", maxHeight: "460px" },
+    ],
   },
   {
     name: "Abrigo Legal",
@@ -83,7 +93,7 @@ const projects = [
     stats: [] as { value: string; label: string }[],
     detail:
       "Uma parceria entre a Secretaria Municipal de Proteção Animal e a SEUMA para fortalecer e formalizar a rede de proteção animal independente de Fortaleza.",
-    photos: [] as { src: string; alt: string }[],
+    photos: [] as { src: string; alt: string; objectPosition?: string; scale?: number; objectFit?: "cover" | "contain"; maxHeight?: string }[],
   },
 ]
 
@@ -107,6 +117,16 @@ const variants = {
 export function ProjectsSection() {
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState(1)
+  const [paused, setPaused] = useState(false)
+
+  useEffect(() => {
+    if (paused) return
+    const timer = setInterval(() => {
+      setDirection(1)
+      setCurrent((i) => (i + 1) % projects.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [paused])
 
   const prev = () => {
     setDirection(-1)
@@ -121,7 +141,7 @@ export function ProjectsSection() {
   const project = projects[current]
 
   return (
-    <section id="projetos" className="py-24 bg-muted/30">
+    <section id="projetos" className="py-24 bg-muted/30 border-t border-border">
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -132,7 +152,7 @@ export function ProjectsSection() {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <p className="text-primary font-medium tracking-wider uppercase text-sm">
-            Projetos
+            Projetos enquanto secretário de proteção animal do município
           </p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
             Ações que Transformam
@@ -144,7 +164,7 @@ export function ProjectsSection() {
         </motion.div>
 
         {/* Carousel */}
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={current}
@@ -156,7 +176,7 @@ export function ProjectsSection() {
               className="flex flex-col lg:flex-row gap-12 items-center min-h-[420px]"
             >
               {/* Text content */}
-              <div className="flex-1 space-y-6">
+              <div className={`space-y-6 ${project.photos.length === 0 ? "w-[65%]" : "flex-1"}`}>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                     <PawPrint className="w-5 h-5 text-primary" />
@@ -197,39 +217,58 @@ export function ProjectsSection() {
               </div>
 
               {/* Photos */}
-              <div className="flex-1 w-full">
-                {project.photos.length > 0 ? (
+              {project.photos.length > 0 && <div className="flex-1 w-full">
+                {true ? (
                   <div
                     className={`grid gap-4 ${
                       project.photos.length === 1 ? "grid-cols-1" : "grid-cols-2"
                     }`}
                   >
-                    {project.photos.map((photo, i) => (
-                      <div
-                        key={i}
-                        className={`relative rounded-xl overflow-hidden border border-border ${
-                          project.photos.length === 1
-                            ? "aspect-video"
-                            : i === 0 && project.photos.length >= 3
-                            ? "aspect-square col-span-2"
-                            : "aspect-square"
-                        }`}
-                      >
-                        <Image src={photo.src} alt={photo.alt} fill className="object-cover" />
-                      </div>
-                    ))}
+                    {project.photos.map((photo, i) =>
+                      photo.objectFit === "contain" ? (
+                        <div key={i} className="flex items-center justify-center">
+                          <Image
+                            src={photo.src}
+                            alt={photo.alt}
+                            width={0}
+                            height={0}
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            quality={100}
+                            style={photo.maxHeight
+                              ? { width: "auto", maxWidth: "100%", height: photo.maxHeight, borderRadius: "1.5rem" }
+                              : { width: "100%", height: "auto", borderRadius: "1.5rem" }
+                            }
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          key={i}
+                          className={`relative rounded-xl overflow-hidden border border-border ${
+                            project.photos.length === 1
+                              ? "aspect-[4/3]"
+                              : i === 0 && project.photos.length >= 3
+                              ? "aspect-square col-span-2"
+                              : "aspect-square"
+                          }`}
+                        >
+                          <Image
+                            src={photo.src}
+                            alt={photo.alt}
+                            fill
+                            quality={100}
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            className="object-cover"
+                            style={{
+                              objectPosition: photo.objectPosition,
+                              ...(photo.scale ? { transform: `scale(${photo.scale})`, transformOrigin: "left center" } : {}),
+                            }}
+                          />
+                        </div>
+                      )
+                    )}
                   </div>
-                ) : (
-                  <div className="aspect-video rounded-xl bg-card border-2 border-dashed border-border flex items-center justify-center">
-                    <div className="text-center space-y-2">
-                      <PawPrint className="w-10 h-10 text-muted-foreground/40 mx-auto" />
-                      <p className="text-sm text-muted-foreground/60">
-                        Fotos do {project.name} em breve
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
+                ) : null}
+              </div>}
             </motion.div>
           </AnimatePresence>
         </div>
