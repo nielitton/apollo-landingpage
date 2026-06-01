@@ -11,6 +11,7 @@ const navLinks = [
   { label: "Trajetória", href: "#trajetoria" },
   { label: "Projetos", href: "#projetos" },
   { label: "Missão", href: "#missao" },
+  // Abaixo-assinado removido daqui; será um botão especial
 ]
 
 export function Header() {
@@ -25,6 +26,56 @@ export function Header() {
     window.addEventListener("scroll", onScroll)
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
+
+  // Botão do abaixo-assinado agora sempre com padrão dark, independente do theme
+  const abaixoAssinadoBtnClass =
+    `
+      hidden
+      md:inline-flex
+      items-center
+      px-4
+      py-2
+      rounded-full
+      bg-[#2563eb]
+      text-white
+      font-semibold
+      text-sm
+      shadow-[0_0_16px_2px_rgba(37,99,235,0.6)]
+      hover:bg-[#1e40af]
+      hover:shadow-[0_0_32px_6px_rgba(37,99,235,0.9)]
+      transition-all
+      animate-glow
+      focus:outline-none
+      uppercase
+    `
+  const abaixoAssinadoBtnStyle = {
+    textShadow: "0 0 5px #2563eb, 0 0 10px #3b82f6",
+    boxShadow: "0 0 8px 2px #2563eb99"
+  }
+
+  // Para o botão mobile, mesma coisa, só tirando o hidden/md:inline-flex
+  const abaixoAssinadoBtnMobileClass =
+    `
+      inline-flex
+      items-center
+      px-4
+      py-2
+      rounded-full
+      bg-[#2563eb]
+      text-white
+      font-semibold
+      text-sm
+      shadow-[0_0_16px_2px_rgba(37,99,235,0.6)]
+      hover:bg-[#1e40af]
+      hover:shadow-[0_0_32px_6px_rgba(37,99,235,0.9)]
+      transition-all
+      mt-2
+      uppercase
+    `
+  const abaixoAssinadoBtnMobileStyle = {
+    textShadow: "0 0 5px #2563eb, 0 0 10px #3b82f6",
+    boxShadow: "0 0 8px 2px #2563eb99"
+  }
 
   return (
     <header
@@ -57,8 +108,15 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Theme toggle + mobile menu */}
+          {/* Botão especial da Petição + Toggle + menu mobile */}
           <div className="flex items-center gap-2">
+            <Link
+              href="#petition"
+              className={abaixoAssinadoBtnClass}
+              style={abaixoAssinadoBtnStyle}
+            >
+              Abaixo-assinado
+            </Link>
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -103,9 +161,30 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+            {/* Botão de petição no mobile menu */}
+            <Link
+              href="#petition"
+              onClick={() => setMenuOpen(false)}
+              className={abaixoAssinadoBtnMobileClass}
+              style={abaixoAssinadoBtnMobileStyle}
+            >
+              Abaixo-assinado
+            </Link>
           </nav>
         </div>
       )}
+
+      {/* Definição de animação glow sem borda/luz externa piscando */}
+      <style jsx global>{`
+        @keyframes glow {
+          0% { box-shadow: 0 0 8px 2px #2563eb99; }
+          50% { box-shadow: 0 0 16px 6px #2563ebcc; }
+          100% { box-shadow: 0 0 8px 2px #2563eb99; }
+        }
+        .animate-glow {
+          animation: glow 2s infinite ease-in-out;
+        }
+      `}</style>
     </header>
   )
 }
