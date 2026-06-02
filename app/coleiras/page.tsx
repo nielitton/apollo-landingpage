@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 // Telefone do WhatsApp para onde será enviado o pedido
-const WHATSAPP_NUMBER = "5585986109152";
+const WHATSAPP_NUMBER = "5585985250794";
 
 // URL público do Google Sheets Script
 const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyvW3l3mcVJIDtDSJkuMlm5FbDXnrzDZOyw0HLjgWwwbdSw5SBrU5hTUOveWnEKHs_ywg/exec";
