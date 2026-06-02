@@ -90,10 +90,10 @@ export default function ColeirasPage() {
                     ...prev,
                     quantidadeColeiras: "",
                 }));
-            } else if (intValue > 30) {
+            } else if (intValue > 10) {
                 setForm((prev) => ({
                     ...prev,
-                    quantidadeColeiras: "30",
+                    quantidadeColeiras: "10",
                 }));
             } else if (intValue < 1) {
                 setForm((prev) => ({
@@ -131,7 +131,7 @@ export default function ColeirasPage() {
             form.estado.trim() &&
             form.quantidadeColeiras.trim() &&
             form.lgpd &&
-            !isNaN(q) && q >= 1 && q <= 30
+            !isNaN(q) && q >= 1 && q <= 10
         );
     }
 
@@ -149,8 +149,8 @@ export default function ColeirasPage() {
             missing.push("Quantidade de coleiras");
         else {
             const q = Number(form.quantidadeColeiras);
-            if (isNaN(q) || q < 1 || q > 30)
-                missing.push("Quantidade de coleiras (entre 1 e 30)");
+            if (isNaN(q) || q < 1 || q > 10)
+                missing.push("Quantidade de coleiras (entre 1 e 10)");
         }
         if (!form.lgpd) missing.push("Concordância LGPD");
         return missing;
@@ -432,12 +432,12 @@ Quantidade desejada: ${form.quantidadeColeiras}`;
                                     onChange={handleChange}
                                     placeholder="Digite o número de coleiras"
                                     min={1}
-                                    max={30}
+                                    max={10}
                                     step={1}
                                     disabled={submitting}
                                 />
                                 <div className="text-xs text-gray-500 dark:text-slate-300 mt-0.5">
-                                    <span className="text-red-600">*</span> O máximo permitido são 30 coleiras por pedido.
+                                    <span className="text-red-600">*</span> O máximo permitido são 10 coleiras por pedido.
                                 </div>
                             </div>
                             <div className="flex items-center mt-1.5">
