@@ -162,8 +162,10 @@ export function PetitionSection() {
       });
       if (resp && resp.success) {
         setSubmitted(true)
-        setFeedback("Obrigado por apoiar a causa!")
         setFeedbackType("success")
+        setFeedback(null)
+        // Redirecionar direto para o WhatsApp
+        window.location.href = buildWhatsappUrl()
       } else {
         setFeedback("Erro ao enviar cadastro. Tente novamente em alguns segundos.")
         setFeedbackType("error")
@@ -171,8 +173,6 @@ export function PetitionSection() {
         setSaving(false)
         return
       }
-      const wppUrl = buildWhatsappUrl()
-      window.open(wppUrl, "_blank")
     } catch (err) {
       setFeedback("Erro ao enviar cadastro. Tente novamente em alguns segundos.")
       setFeedbackType("error")

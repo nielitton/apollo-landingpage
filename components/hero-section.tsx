@@ -82,15 +82,21 @@ export function HeroSection() {
             <motion.div className="flex flex-col sm:flex-row gap-4 pt-8" {...fadeUp(0.55)}>
               <Link
                 href="/adesivos"
-                className="inline-block px-6 py-3 rounded-full bg-green-600 text-white font-semibold text-base shadow hover:bg-green-700 transition-all focus:outline-none"
+                className="group inline-flex items-center px-7 py-3 rounded-full bg-gradient-to-r from-green-500 via-green-600 to-green-700 text-white font-bold text-base shadow-md hover:from-green-600 hover:via-green-700 hover:to-green-800 transition-all duration-200 focus:outline-none relative overflow-hidden cursor-pointer"
               >
-                Peça seu adesivo
+                <span className="relative z-10 flex items-center gap-2">
+                  Peça seu adesivo
+                </span>
+                <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 bg-white transition-opacity duration-300" aria-hidden="true" />
               </Link>
               <Link
                 href="/coleiras"
-                className="inline-block px-6 py-3 rounded-full bg-primary text-white font-semibold text-base shadow hover:bg-primary/80 transition-all focus:outline-none"
+                className="group inline-flex items-center px-7 py-3 rounded-full bg-gradient-to-r from-primary via-primary/80 to-primary/90 text-white font-bold text-base shadow-md hover:from-primary/90 hover:via-primary/90 hover:to-primary/80 transition-all duration-200 focus:outline-none relative overflow-hidden cursor-pointer"
               >
-                Peça suas coleiras
+                <span className="relative z-10 flex items-center gap-2">
+                  Peça suas coleiras
+                </span>
+                <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 bg-white transition-opacity duration-300" aria-hidden="true" />
               </Link>
             </motion.div>
 
