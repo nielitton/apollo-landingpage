@@ -140,7 +140,8 @@ E-mail: ${form.email}`;
             const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
                 mensagem
             )}`;
-            window.open(url, "_blank");
+            // Redirecionar usando window.location.href para abrir o WhatsApp na própria aba/página (funciona melhor em dispositivos móveis)
+            window.location.href = url;
         } else {
             alert('Ocorreu um erro ao registrar sua solicitação no sistema. Por favor, tente novamente em alguns instantes.');
         }

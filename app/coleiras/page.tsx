@@ -187,7 +187,8 @@ Quantidade desejada: ${form.quantidadeColeiras}`;
             const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
                 mensagem
             )}`;
-            window.open(url, "_blank");
+            // REQUISITO: usar window.location.href para navegar até o WhatsApp (importante para funcionar em todos os celulares/browser)
+            window.location.href = url;
         } else {
             // (Opcional) feedback de erro
             alert('Ocorreu um erro ao registrar sua solicitação no sistema. Por favor, tente novamente em alguns instantes.');
