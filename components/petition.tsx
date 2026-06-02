@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx_xKXXl7gdJ0AZ7hnSWo2aIbj2I8bMia3f8dvDYqfqWJdJsJC9XxwrdNnK8pnqNbTv/exec";
 
@@ -27,7 +27,6 @@ function maskTelefone(value: string) {
 
 // Função para enviar para o Google Sheets
 async function enviarFormulario(data: any) {
-  // Remove alert, just resolves for loading
   try {
     await fetch(SCRIPT_URL, {
       method: "POST",
@@ -46,7 +45,6 @@ async function enviarFormulario(data: any) {
         lgpd: data.lgpd ? "Sim" : "Não"
       })
     });
-    // Não faz nada — notificações/erro são por estado no componente
     return { success: true };
   } catch (error) {
     console.error("Erro ao enviar formulário:", error);
@@ -101,11 +99,11 @@ export function PetitionSection() {
     const nome = encodeURIComponent(form.nome.trim())
     const cidade = encodeURIComponent(form.cidade.trim())
     const estado = encodeURIComponent(form.estado.trim())
-    let msg = "Olá, vim do abaixo-assinado sobre o caso do cão Orelha. Meu nome é " + form.nome.trim()
+    let msg = "Olá, vim do abaixo-assinado pelos 50 gatos mortos pela Estrutural. Meu nome é " + form.nome.trim()
     if (cidade && estado) {
       msg += `, de ${form.cidade.trim()}/${form.estado.trim()}`
     }
-    msg += ". Quero apoiar o desarquivamento do caso e participar dessa causa."
+    msg += ". Quero cobrar justiça pelos 50 gatos e participar da mobilização."
     return `https://wa.me/5585992105299?text=${encodeURIComponent(msg)}`
   }
 
@@ -184,8 +182,8 @@ export function PetitionSection() {
         {/* HEADER COM IMAGEM */}
         <div className="flex justify-center mb-12">
           <img
-            src="https://oyynwzzdwgqhclzwqovb.supabase.co/storage/v1/object/public/images/ChatGPT%20Image%2026%20de%20mai.%20de%202026,%2011_07_57.png"
-            alt="Cão Orelha - Justiça para o Cão Orelha"
+            src="https://oyynwzzdwgqhclzwqovb.supabase.co/storage/v1/object/public/images/abaix-assinado-borrado.png"
+            alt="Abaixo-assinado pelos 50 gatos mortos"
             className="max-w-full rounded-xl shadow-md object-cover w-full md:max-w-2xl"
           />
         </div>
@@ -204,43 +202,39 @@ export function PetitionSection() {
                 Abaixo-assinado
               </p>
               <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground leading-tight text-center lg:text-left">
-                Justiça para o Cão Orelha: Desarquivamento Já!
+                ABAIXO-ASSINADO POR JUSTIÇA AOS 50 GATOS MORTOS PELA ESTRUTURAL!
               </h2>
             </div>
             <div className="space-y-4 prose prose-slate max-w-none">
               <p>
-                Nós, cidadãos e defensores dos direitos dos animais, exigimos o desarquivamento do caso do cão Orelha.
+                Nós, cidadãos, protetores de animais e defensores da vida, manifestamos nossa profunda indignação diante das graves denúncias envolvendo a morte de aproximadamente 50 gatos nas dependências da empresa Estrutural, em Fortaleza.
               </p>
               <p>
-                O arquivamento deste processo representa um retrocesso na luta contra os maus-tratos e a violência animal.
-                Orelha tornou-se símbolo da resistência e da necessidade de responsabilização de quem comete crueldade. Não podemos permitir que sua história seja esquecida.
+                Segundo relatos que vieram a público, os animais teriam sido submetidos a extrema crueldade, sofrendo maus-tratos incompatíveis com qualquer valor de humanidade, respeito e civilidade. A repercussão do caso provocou revolta em toda a sociedade, mobilizando protetores independentes, organizações da causa animal e cidadãos que não aceitam a violência contra seres indefesos.
               </p>
               <p>
-                <strong>Nosso pedido:</strong>
+                Os gatos não tinham voz para se defender. Dependiam da compaixão humana para sobreviver. Em vez disso, a denúncia aponta para um cenário de sofrimento que jamais pode ser ignorado ou tratado com indiferença.
+              </p>
+              <p>
+                <strong>Diante da gravidade dos fatos, exigimos:</strong>
               </p>
               <ul>
-                <li>
-                  Que o Ministério Público reabra o caso e avalie novos elementos apresentados pela sociedade civil.
-                </li>
-                <li>
-                  Que os responsáveis sejam devidamente punidos conforme a legislação brasileira de proteção animal.
-                </li>
-                <li>
-                  Que este caso seja tratado como exemplo da importância da justiça e da defesa dos animais.
-                </li>
+                <li>Investigação rigorosa, transparente e célere por parte das autoridades competentes;</li>
+                <li>Preservação e análise de todas as provas disponíveis;</li>
+                <li>Identificação e responsabilização de todos os envolvidos, sejam pessoas físicas ou jurídicas;</li>
+                <li>Aplicação das penalidades previstas na legislação brasileira para crimes de maus-tratos contra animais;</li>
+                <li>Acompanhamento público do andamento das investigações, garantindo transparência para toda a sociedade.</li>
               </ul>
               <p>
-                <strong>Por que é importante?</strong>
+                Este não é apenas um pedido por justiça para os gatos da Estrutural. É um posicionamento firme contra a crueldade animal e contra a impunidade. Quando a violência contra os mais vulneráveis é tolerada, toda a sociedade perde.
               </p>
               <p>
-                O cão Orelha não é apenas uma vítima, mas um marco na luta contra a crueldade animal. Reabrir o caso é garantir que sua memória inspire mudanças e que a impunidade não prevaleça.
-              </p>
-              <p>
-                Assine este abaixo-assinado e compartilhe com seus amigos e familiares.
-                Quanto mais vozes se unirem, maior será a pressão sobre as autoridades para que a justiça seja feita.
+                Assinamos este documento para afirmar que a vida animal importa, que a crueldade não pode ser normalizada e que os responsáveis devem responder por seus atos.
               </p>
               <blockquote>
-                "Crueldade não pode ficar impune. Assine e ajude a reabrir o caso do cão Orelha."
+                JUSTIÇA PELOS 50 GATOS.
+                <br />
+                A luta continua até que a verdade seja esclarecida e os responsáveis sejam punidos.
               </blockquote>
             </div>
           </motion.div>
@@ -460,8 +454,8 @@ export function PetitionSection() {
                     (feedbackType === "success"
                       ? "text-green-700 dark:text-green-400"
                       : feedbackType === "error"
-                      ? "text-red-700 dark:text-red-400"
-                      : "")
+                        ? "text-red-700 dark:text-red-400"
+                        : "")
                   }
                 >
                   {feedback}
