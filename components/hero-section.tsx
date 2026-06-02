@@ -1,14 +1,14 @@
 "use client"
 
-import { Instagram, Facebook, Mail } from "lucide-react"
+import { motion } from "framer-motion"
+import { Facebook, Instagram, Mail } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { motion } from "framer-motion"
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay, ease: "easeOut" },
+  transition: { duration: 0.6, delay, ease: "easeOut" as any },
 })
 
 export function HeroSection() {
@@ -78,6 +78,22 @@ export function HeroSection() {
               </Link>
             </motion.div>
 
+            {/* Call to action buttons */}
+            <motion.div className="flex flex-col sm:flex-row gap-4 pt-8" {...fadeUp(0.55)}>
+              <Link
+                href="/adesivos"
+                className="inline-block px-6 py-3 rounded-full bg-green-600 text-white font-semibold text-base shadow hover:bg-green-700 transition-all focus:outline-none"
+              >
+                Peça seu adesivo
+              </Link>
+              <Link
+                href="/coleiras"
+                className="inline-block px-6 py-3 rounded-full bg-primary text-white font-semibold text-base shadow hover:bg-primary/80 transition-all focus:outline-none"
+              >
+                Peça suas coleiras
+              </Link>
+            </motion.div>
+
             <motion.div className="pt-8" {...fadeUp(0.6)}>
               <Link
                 href="#trajetoria"
@@ -96,7 +112,7 @@ export function HeroSection() {
             className="relative"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" as any }}
           >
             <div className="relative aspect-square rounded-2xl overflow-hidden bg-secondary border border-border">
               <Image

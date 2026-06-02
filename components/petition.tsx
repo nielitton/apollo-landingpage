@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx_xKXXl7gdJ0AZ7hnSWo2aIbj2I8bMia3f8dvDYqfqWJdJsJC9XxwrdNnK8pnqNbTv/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyvW3l3mcVJIDtDSJkuMlm5FbDXnrzDZOyw0HLjgWwwbdSw5SBrU5hTUOveWnEKHs_ywg/exec";
 
 // Função para aplicar máscara de CPF
 function maskCpf(value: string) {
@@ -36,13 +36,15 @@ async function enviarFormulario(data: any) {
       },
       body: JSON.stringify({
         nome: data.nome,
+        email: data.email, // incluído email no envio
         celular: data.celular,
         cpf: data.cpf,
         endereco: data.endereco,
         bairro: data.bairro,
         cidade: data.cidade,
         estado: data.estado,
-        lgpd: data.lgpd ? "Sim" : "Não"
+        lgpd: data.lgpd ? "Sim" : "Não",
+        origem: "abaixo-assinado-50-gatos"
       })
     });
     return { success: true };
@@ -55,6 +57,7 @@ async function enviarFormulario(data: any) {
 export function PetitionSection() {
   const [form, setForm] = useState({
     nome: "",
+    email: "",
     cpf: "",
     telefone: "",
     endereco: "",
@@ -110,6 +113,8 @@ export function PetitionSection() {
   function allRequiredFilled() {
     return (
       form.nome.trim() &&
+      form.email.trim() &&
+      /^.+@.+\..+$/.test(form.email) &&
       form.cpf.replace(/\D/g, "").length === 11 &&
       form.telefone.replace(/\D/g, "").length === 11 &&
       form.cidade.trim() &&
@@ -122,6 +127,7 @@ export function PetitionSection() {
   function getMissingFields() {
     const missing: string[] = []
     if (!form.nome.trim()) missing.push("Nome e sobrenome")
+    if (!form.email.trim() || !/^.+@.+\..+$/.test(form.email)) missing.push("E-mail válido")
     if (form.cpf.replace(/\D/g, "").length !== 11) missing.push("CPF")
     if (form.telefone.replace(/\D/g, "").length !== 11) missing.push("Telefone")
     if (!form.cidade.trim()) missing.push("Cidade")
@@ -145,6 +151,7 @@ export function PetitionSection() {
     try {
       const resp = await enviarFormulario({
         nome: form.nome,
+        email: form.email,
         celular: form.telefone,
         cpf: form.cpf,
         endereco: form.endereco,
@@ -262,6 +269,26 @@ export function PetitionSection() {
                   value={form.nome}
                   onChange={handleChange}
                   placeholder="Seu nome completo"
+                  disabled={saving}
+                />
+              </div>
+              {/* Campo de email adicionado */}
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <label className="font-medium dark:text-slate-100" htmlFor="email">
+                    E-mail <span className="text-red-600">*</span>
+                  </label>
+                </div>
+                <input
+                  required
+                  type="email"
+                  name="email"
+                  id="email"
+                  className="w-full px-3 py-2 border rounded-md dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="Seu melhor e-mail"
+                  autoComplete="off"
                   disabled={saving}
                 />
               </div>

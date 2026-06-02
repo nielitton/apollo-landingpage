@@ -1,4 +1,4 @@
-import { Instagram, Facebook, Mail, MapPin, Phone } from "lucide-react"
+import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
 
 export function Footer() {
@@ -6,32 +6,46 @@ export function Footer() {
     <footer className="py-16 bg-background border-t border-border">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-12">
-          {/* Brand */}
+          {/* Brand + Call to Action Buttons */}
           <div className="space-y-4">
             <h3 className="font-serif text-2xl font-bold text-foreground">
               Apollo Vicz
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Vereador de Fortaleza, protetor animal e ativista. 
+              Vereador de Fortaleza, protetor animal e ativista.
               Lutando por políticas públicas em defesa dos animais.
             </p>
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+              <Link
+                href="/coleiras"
+                className="px-4 py-2 rounded-full bg-primary text-white font-semibold shadow hover:bg-primary/80 transition"
+              >
+                Peça suas coleiras
+              </Link>
+              <Link
+                href="/adesivos"
+                className="px-4 py-2 rounded-full bg-green-600 text-white font-semibold shadow hover:bg-green-700 transition"
+              >
+                Peça seu adesivo
+              </Link>
+            </div>
             <div className="flex items-center gap-3 pt-2">
-              <Link 
-                href="#" 
+              <Link
+                href="#"
                 className="p-2 rounded-full bg-secondary hover:bg-primary/20 transition-colors group"
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
               </Link>
-              <Link 
-                href="#" 
+              <Link
+                href="#"
                 className="p-2 rounded-full bg-secondary hover:bg-primary/20 transition-colors group"
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
               </Link>
-              <Link 
-                href="#" 
+              <Link
+                href="#"
                 className="p-2 rounded-full bg-secondary hover:bg-primary/20 transition-colors group"
                 aria-label="Email"
               >

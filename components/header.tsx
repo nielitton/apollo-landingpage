@@ -1,9 +1,10 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { Menu, Moon, Sun, X } from "lucide-react"
 import { useTheme } from "next-themes"
-import { Sun, Moon, Menu, X } from "lucide-react"
 import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
 const navLinks = [
   { label: "Início", href: "#" },
@@ -14,11 +15,19 @@ const navLinks = [
   // Abaixo-assinado removido daqui; será um botão especial
 ]
 
+// Função auxiliar para ir para a home+hash, mesmo que não esteja na home
+function goToHomeHash(router: ReturnType<typeof useRouter>, hash: string) {
+  if (hash === "#" || !hash) router.push("/")
+  else router.push(`/${hash}`)
+}
+
 export function Header() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
 
   useEffect(() => {
     setMounted(true)
@@ -77,19 +86,46 @@ export function Header() {
     boxShadow: "0 0 8px 2px #2563eb99"
   }
 
+  // Handler para navegação nos links da navbar (desktop + mobile)
+  function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    if (pathname !== "/") {
+      e.preventDefault()
+      goToHomeHash(router, href.startsWith("#") ? href : "")
+      setMenuOpen(false)
+    }
+  }
+
+  // Handler para o botão de petição (desktop + mobile)
+  function handlePetitionClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    if (pathname !== "/") {
+      e.preventDefault()
+      goToHomeHash(router, "#petition")
+      setMenuOpen(false)
+    }
+    // Senão, falta só fechar menu (se mobile)
+    else {
+      setMenuOpen(false)
+    }
+  }
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/60 backdrop-blur-[7px] backdrop-saturate-150 border-b border-white/20 shadow-sm"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? "bg-background/60 backdrop-blur-[7px] backdrop-saturate-150 border-b border-white/20 shadow-sm"
+        : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link
             href="#"
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+              if (pathname !== "/") {
+                e.preventDefault()
+                goToHomeHash(router, "#")
+              }
+            }}
             className="font-serif text-xl font-bold text-foreground hover:text-primary transition-colors"
           >
             Apollo Vicz
@@ -101,6 +137,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleNavClick(e, link.href)}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
@@ -112,6 +149,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             <Link
               href="#petition"
+              onClick={handlePetitionClick}
               className={abaixoAssinadoBtnClass}
               style={abaixoAssinadoBtnStyle}
             >
@@ -155,7 +193,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleNavClick(e, link.href)}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1"
               >
                 {link.label}
@@ -164,7 +202,7 @@ export function Header() {
             {/* Botão de petição no mobile menu */}
             <Link
               href="#petition"
-              onClick={() => setMenuOpen(false)}
+              onClick={handlePetitionClick}
               className={abaixoAssinadoBtnMobileClass}
               style={abaixoAssinadoBtnMobileStyle}
             >
