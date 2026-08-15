@@ -1,5 +1,6 @@
 import { Instagram, Mail, MapPin } from "lucide-react"
 import Link from "next/link"
+import { CampaignNumber } from "@/components/campaign-number"
 
 export function Footer() {
   return (
@@ -40,7 +41,7 @@ export function Footer() {
                 <Instagram className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
               </Link>
               <Link
-                href="mailto:dep.apollovicz@gmail.com"
+                href="mailto:contato@apollovicz.com.br"
                 className="p-2 rounded-full bg-secondary hover:bg-primary/20 transition-colors group"
                 aria-label="Enviar e-mail para a campanha"
               >
@@ -62,8 +63,8 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                <a href="mailto:dep.apollovicz@gmail.com" className="text-muted-foreground text-sm hover:text-primary transition-colors">
-                  dep.apollovicz@gmail.com
+                <a href="mailto:contato@apollovicz.com.br" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                  contato@apollovicz.com.br
                 </a>
               </div>
             </div>
@@ -82,7 +83,7 @@ export function Footer() {
               <Link href="/#projetos" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
                 Projetos
               </Link>
-              <Link href="mailto:dep.apollovicz@gmail.com" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
+              <Link href="mailto:contato@apollovicz.com.br" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
                 Contato
               </Link>
             </nav>
@@ -96,7 +97,7 @@ export function Footer() {
               Lucas Nocrato Soares — Apollo Vicz
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
-              Candidato a Deputado Estadual · Nº 55011 · PSD — Partido Social Democrático (55)
+              Candidato a Deputado Estadual<CampaignNumber /> · PSD — Partido Social Democrático (55)
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
               CNPJ da campanha: 68.403.664/0001-35 · Propaganda Eleitoral

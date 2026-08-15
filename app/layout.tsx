@@ -5,6 +5,8 @@ import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 
+export const dynamic = 'force-dynamic'
+
 const inter = Inter({
   subsets: ["latin"],
   variable: '--font-inter'
@@ -15,12 +17,23 @@ const playfair = Playfair_Display({
   variable: '--font-playfair'
 });
 
-export const metadata: Metadata = {
-  title: 'Apollo Vicz 55011 | Candidato a Deputado Estadual',
-  description: 'Apollo Vicz, candidato a deputado estadual pelo PSD, número 55011. Proteção animal e políticas públicas para o Ceará.',
-  icons: {
-    icon: { url: '/icon.svg', type: 'image/svg+xml' },
-  },
+const campaignNumberReleased = () =>
+  Date.now() >= new Date('2026-08-16T00:00:00-03:00').getTime()
+
+export function generateMetadata(): Metadata {
+  const showCampaignNumber = campaignNumberReleased()
+
+  return {
+    title: showCampaignNumber
+      ? 'Apollo Vicz 55011 | Candidato a Deputado Estadual'
+      : 'Apollo Vicz | Candidato a Deputado Estadual',
+    description: showCampaignNumber
+      ? 'Apollo Vicz, candidato a deputado estadual pelo PSD, número 55011. Proteção animal e políticas públicas para o Ceará.'
+      : 'Apollo Vicz, candidato a deputado estadual pelo PSD. Proteção animal e políticas públicas para o Ceará.',
+    icons: {
+      icon: { url: '/icon.svg', type: 'image/svg+xml' },
+    },
+  }
 }
 
 export default function RootLayout({

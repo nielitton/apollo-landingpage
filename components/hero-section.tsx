@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Facebook, Instagram, Mail } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { CampaignNumber } from "@/components/campaign-number"
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
@@ -26,7 +27,7 @@ export function HeroSection() {
               className="text-primary font-medium tracking-wider uppercase text-sm"
               {...fadeUp(0.1)}
             >
-              Candidato a Deputado Estadual · 55011
+              Candidato a Deputado Estadual<CampaignNumber />
             </motion.p>
 
             <motion.h1
@@ -47,7 +48,7 @@ export function HeroSection() {
               className="text-lg text-muted-foreground leading-relaxed max-w-xl"
               {...fadeUp(0.4)}
             >
-              19 anos dedicados à luta pela proteção animal. De São Miguel Paulista
+              20 anos dedicados à luta pela proteção animal. De São Miguel Paulista
               para a vida pública no Ceará, uma trajetória de resiliência, amor e
               compromisso com os que não têm voz.
             </motion.p>
@@ -70,7 +71,7 @@ export function HeroSection() {
                 <Facebook className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
               </Link>
               <Link
-                href="mailto:dep.apollovicz@gmail.com"
+                href="mailto:contato@apollovicz.com.br"
                 className="p-3 rounded-full bg-secondary hover:bg-primary/20 transition-colors group"
                 aria-label="Enviar e-mail para a campanha"
               >
