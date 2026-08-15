@@ -14,7 +14,6 @@ function maskCpf(value: string) {
     .replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3-$4")
     .slice(0, 14)
 }
-
 // Função para aplicar máscara de telefone
 function maskTelefone(value: string) {
   let numbers = value.replace(/\D/g, "").slice(0, 11)

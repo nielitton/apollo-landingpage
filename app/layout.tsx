@@ -16,8 +16,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'Apollo Vicz | Vereador de Fortaleza',
-  description: 'Protetor Animal, Ativista e Vereador de Fortaleza. Lutando pela proteção animal e políticas públicas no Ceará.',
+  title: 'Apollo Vicz 55011 | Candidato a Deputado Estadual',
+  description: 'Apollo Vicz, candidato a deputado estadual pelo PSD, número 55011. Proteção animal e políticas públicas para o Ceará.',
   icons: {
     icon: { url: '/icon.svg', type: 'image/svg+xml' },
   },

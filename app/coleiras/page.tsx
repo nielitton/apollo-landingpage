@@ -8,7 +8,6 @@ const WHATSAPP_NUMBER = "5585985250794";
 
 // URL público do Google Sheets Script
 const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyvW3l3mcVJIDtDSJkuMlm5FbDXnrzDZOyw0HLjgWwwbdSw5SBrU5hTUOveWnEKHs_ywg/exec";
-
 // Função para aplicar máscara de telefone
 function maskTelefone(value: string) {
     let numbers = value.replace(/\D/g, "").slice(0, 11);

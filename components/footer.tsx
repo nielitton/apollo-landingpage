@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react"
+import { Instagram, Mail, MapPin } from "lucide-react"
 import Link from "next/link"
 
 export function Footer() {
@@ -12,8 +12,8 @@ export function Footer() {
               Apollo Vicz
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Vereador de Fortaleza, protetor animal e ativista.
-              Lutando por políticas públicas em defesa dos animais.
+              Candidato a deputado estadual, protetor animal e ativista.
+              Lutando por políticas públicas em defesa dos animais no Ceará.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <Link
@@ -31,23 +31,18 @@ export function Footer() {
             </div>
             <div className="flex items-center gap-3 pt-2">
               <Link
-                href="#"
+                href="https://www.instagram.com/apollovicz/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 rounded-full bg-secondary hover:bg-primary/20 transition-colors group"
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
               </Link>
               <Link
-                href="#"
+                href="mailto:dep.apollovicz@gmail.com"
                 className="p-2 rounded-full bg-secondary hover:bg-primary/20 transition-colors group"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-              </Link>
-              <Link
-                href="#"
-                className="p-2 rounded-full bg-secondary hover:bg-primary/20 transition-colors group"
-                aria-label="Email"
+                aria-label="Enviar e-mail para a campanha"
               >
                 <Mail className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
               </Link>
@@ -61,21 +56,15 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
                 <p className="text-muted-foreground text-sm">
-                  Câmara Municipal de Fortaleza<br />
+                  Rua Nereide, Granja Portugal<br />
                   Fortaleza, CE
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                <p className="text-muted-foreground text-sm">
-                  (85) 99638-3243
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                <p className="text-muted-foreground text-sm">
-                  contato@apollovicz.com.br
-                </p>
+                <a href="mailto:dep.apollovicz@gmail.com" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                  dep.apollovicz@gmail.com
+                </a>
               </div>
             </div>
           </div>
@@ -84,16 +73,16 @@ export function Footer() {
           <div className="space-y-4">
             <h4 className="font-semibold text-foreground">Links Rápidos</h4>
             <nav className="space-y-2">
-              <Link href="#" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
+              <Link href="/#" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
                 Sobre
               </Link>
-              <Link href="#trajetoria" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
+              <Link href="/#trajetoria" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
                 Trajetória
               </Link>
-              <Link href="#" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
+              <Link href="/#projetos" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
                 Projetos
               </Link>
-              <Link href="#" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
+              <Link href="mailto:dep.apollovicz@gmail.com" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
                 Contato
               </Link>
             </nav>
@@ -101,7 +90,18 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-border">
+        <div className="mt-12 pt-8 border-t border-border space-y-4">
+          <div className="rounded-xl border border-primary/30 bg-primary/5 px-5 py-4 text-center">
+            <p className="font-semibold text-foreground">
+              Lucas Nocrato Soares — Apollo Vicz
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Candidato a Deputado Estadual · Nº 55011 · PSD — Partido Social Democrático (55)
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              CNPJ da campanha: 68.403.664/0001-35 · Propaganda Eleitoral
+            </p>
+          </div>
           <p className="text-center text-muted-foreground text-sm">
             © {new Date().getFullYear()} Apollo Vicz. Todos os direitos reservados.
           </p>

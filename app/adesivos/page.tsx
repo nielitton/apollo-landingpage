@@ -136,7 +136,6 @@ Bairro: ${form.bairro}
 Endereço: ${form.endereco}
 Telefone: ${form.telefone}
 E-mail: ${form.email}`;
-
             const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
                 mensagem
             )}`;

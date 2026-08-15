@@ -43,9 +43,9 @@ export function MissionSection() {
                 Voz para quem não pode falar
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                Na Câmara de Fortaleza, meu compromisso é claro: lutar incansavelmente
-                pela proteção animal, criar políticas públicas efetivas e garantir que
-                os animais tenham seus direitos respeitados.
+                Quero levar à Assembleia Legislativa do Ceará um compromisso claro:
+                lutar incansavelmente pela proteção animal, criar políticas públicas
+                efetivas e garantir que os animais tenham seus direitos respeitados.
               </p>
             </motion.div>
 
