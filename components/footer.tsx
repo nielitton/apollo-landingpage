@@ -16,16 +16,16 @@ export function Footer() {
               Candidato a deputado estadual, protetor animal e ativista.
               Lutando por políticas públicas em defesa dos animais no Ceará.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+            <div className="flex flex-col items-start gap-3 pt-2">
               <Link
                 href="/coleiras"
-                className="px-4 py-2 rounded-full bg-primary text-white font-semibold shadow hover:bg-primary/80 transition cursor-pointer select-none"
+                className="inline-flex justify-center whitespace-nowrap px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-semibold shadow hover:from-blue-600 hover:via-blue-700 hover:to-blue-900 transition-all duration-200 cursor-pointer select-none"
               >
                 Peça suas coleiras
               </Link>
               <Link
                 href="/adesivos"
-                className="px-4 py-2 rounded-full bg-green-600 text-white font-semibold shadow hover:bg-green-700 transition cursor-pointer select-none"
+                className="inline-flex justify-center whitespace-nowrap px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-semibold shadow hover:from-blue-600 hover:via-blue-700 hover:to-blue-900 transition-all duration-200 cursor-pointer select-none"
               >
                 Peça seu material de campanha
               </Link>
@@ -57,8 +57,7 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
                 <p className="text-muted-foreground text-sm">
-                  Rua Nereide, Granja Portugal<br />
-                  Fortaleza, CE
+                  Rua Nereide, Granja Portugal, Fortaleza - CE
                 </p>
               </div>
               <div className="flex items-center gap-3">
