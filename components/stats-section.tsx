@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { CampaignNumber } from "@/components/campaign-number"
 
 export function StatsSection() {
   const stats = [
@@ -13,6 +14,9 @@ export function StatsSection() {
   return (
     <section id="numeros" className="py-20 mt-8 bg-card/50 border-y border-border">
       <div className="container mx-auto px-6">
+        <p className="mb-10 text-center text-primary font-semibold uppercase tracking-wider">
+          Apollo<CampaignNumber />
+        </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <motion.div

@@ -3,6 +3,7 @@
 import { Heart, Home, Award, Vote, Building2, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { motion } from "framer-motion"
+import { CampaignNumber } from "@/components/campaign-number"
 
 export function TimelineSection() {
   const timeline = [
@@ -88,7 +89,7 @@ export function TimelineSection() {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <p className="text-primary font-medium tracking-wider uppercase text-sm">
-            Trajetória
+            Trajetória<CampaignNumber prefix=" · Apollo " />
           </p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
             Uma História de Luta

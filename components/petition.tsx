@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { CampaignNumber } from "@/components/campaign-number";
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyvW3l3mcVJIDtDSJkuMlm5FbDXnrzDZOyw0HLjgWwwbdSw5SBrU5hTUOveWnEKHs_ywg/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzdk0p0bbfiGCf6EoL7zWdgCBFrYGA35vh7mFMVWOek7xRDZ5qZ1YtL8NTSmSDKSLxfiw/exec";
+const WHATSAPP_NUMBER = "5585992105299";
 
 // Função para aplicar máscara de CPF
 function maskCpf(value: string) {
@@ -43,7 +45,8 @@ async function enviarFormulario(data: any) {
         cidade: data.cidade,
         estado: data.estado,
         lgpd: data.lgpd ? "Sim" : "Não",
-        origem: "abaixo-assinado-50-gatos"
+        origem: "abaixo-assinado-50-gatos",
+        numeroAtendimento: WHATSAPP_NUMBER
       })
     });
     return { success: true };
@@ -106,7 +109,7 @@ export function PetitionSection() {
       msg += `, de ${form.cidade.trim()}/${form.estado.trim()}`
     }
     msg += ". Quero cobrar justiça pelos 50 gatos e participar da mobilização."
-    return `https://wa.me/5585992105299?text=${encodeURIComponent(msg)}`
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`
   }
 
   function allRequiredFilled() {
@@ -205,7 +208,7 @@ export function PetitionSection() {
           >
             <div className="space-y-4">
               <p className="text-primary font-medium tracking-wider uppercase text-sm text-center lg:text-left">
-                Abaixo-assinado
+                Abaixo-assinado<CampaignNumber prefix=" · Apollo " />
               </p>
               <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground leading-tight text-center lg:text-left">
                 ABAIXO-ASSINADO POR JUSTIÇA AOS 50 GATOS MORTOS PELA ESTRUTURAL!

@@ -3,6 +3,7 @@
 import { Shield, Heart, Users } from "lucide-react"
 import Image from "next/image"
 import { motion } from "framer-motion"
+import { CampaignNumber } from "@/components/campaign-number"
 
 export function MissionSection() {
   const pillars = [
@@ -37,7 +38,7 @@ export function MissionSection() {
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <p className="text-primary font-medium tracking-wider uppercase text-sm">
-                Missão
+                Missão<CampaignNumber prefix=" · Apollo " />
               </p>
               <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground leading-tight">
                 Voz para quem não pode falar

@@ -19,15 +19,15 @@ export function Footer() {
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <Link
                 href="/coleiras"
-                className="px-4 py-2 rounded-full bg-primary text-white font-semibold shadow hover:bg-primary/80 transition"
+                className="px-4 py-2 rounded-full bg-primary text-white font-semibold shadow hover:bg-primary/80 transition cursor-pointer select-none"
               >
                 Peça suas coleiras
               </Link>
               <Link
                 href="/adesivos"
-                className="px-4 py-2 rounded-full bg-green-600 text-white font-semibold shadow hover:bg-green-700 transition"
+                className="px-4 py-2 rounded-full bg-green-600 text-white font-semibold shadow hover:bg-green-700 transition cursor-pointer select-none"
               >
-                Peça seu adesivo
+                Peça seu material de campanha
               </Link>
             </div>
             <div className="flex items-center gap-3 pt-2">

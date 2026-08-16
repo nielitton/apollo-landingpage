@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 import { PawPrint, ChevronLeft, ChevronRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { CampaignNumber } from "@/components/campaign-number"
 
 const projects = [
   {
@@ -152,7 +153,7 @@ export function ProjectsSection() {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <p className="text-primary font-medium tracking-wider uppercase text-sm">
-            Projetos enquanto secretário de proteção animal do município
+            Projetos enquanto secretário de proteção animal do município<CampaignNumber prefix=" · Apollo " />
           </p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
             Ações que Transformam

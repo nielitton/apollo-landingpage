@@ -137,9 +137,8 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    cursor: auto;
   }
-  a, button, [role="button"] {
+  a, a *, button, button *, [role="button"], [role="button"] * {
     cursor: pointer;
   }
   body {

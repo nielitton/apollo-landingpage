@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { CampaignNumber } from "@/components/campaign-number";
 
 const WHATSAPP_NUMBER = "5585986109152";
-const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyvW3l3mcVJIDtDSJkuMlm5FbDXnrzDZOyw0HLjgWwwbdSw5SBrU5hTUOveWnEKHs_ywg/exec";
+const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzdk0p0bbfiGCf6EoL7zWdgCBFrYGA35vh7mFMVWOek7xRDZ5qZ1YtL8NTSmSDKSLxfiw/exec";
 
 function maskTelefone(value: string) {
     let numbers = value.replace(/\D/g, "").slice(0, 11);
@@ -36,7 +37,9 @@ async function sendToSheetAdesivo(data: any) {
                 cidade: data.cidade ?? "",
                 estado: data.estado ?? "",
                 lgpd: data.lgpd ? "Sim" : "Não",
-                origem: "adesivos-pagina"
+                origem: "adesivos-pagina",
+                numeroAtendimento: WHATSAPP_NUMBER,
+                adesivoPerfurado: data.adesivoPerfurado ? "Sim" : "Não"
             })
         });
         return true;
@@ -54,6 +57,7 @@ export default function AdesivosPage() {
         cidade: "",
         estado: "",
         bairro: "",
+        adesivoPerfurado: false,
         lgpd: false,
     });
 
@@ -129,13 +133,14 @@ export default function AdesivosPage() {
         setSubmitting(false);
 
         if (success) {
-            const mensagem = `Olá! Quero pedir meu adesivo do Apollo!
+            const mensagem = `Olá! Quero pedir meu material de campanha do Apollo!
 Nome: ${form.nome}
 Cidade/Estado: ${form.cidade}/${form.estado}
 Bairro: ${form.bairro}
 Endereço: ${form.endereco}
 Telefone: ${form.telefone}
-E-mail: ${form.email}`;
+E-mail: ${form.email}
+Adesivo perfurado: ${form.adesivoPerfurado ? "Sim" : "Não"}`;
             const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
                 mensagem
             )}`;
@@ -163,27 +168,27 @@ E-mail: ${form.email}`;
                     >
                         <div className="space-y-3">
                             <p className="text-primary font-medium tracking-wider uppercase text-sm text-center lg:text-left">
-                                Adesivo do Apollo
+                                Material de campanha do Apollo<CampaignNumber />
                             </p>
                             <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground leading-tight text-center lg:text-left">
-                                PEÇA SEU ADESIVO GRATUITO DO APOLLO!
+                                PEÇA SEU MATERIAL DE CAMPANHA DO APOLLO!
                             </h2>
                         </div>
                         <div className="space-y-3 prose prose-slate max-w-none">
                             <p>
-                                Os adesivos do Apollo têm como objetivo promover a conscientização sobre a importância do cuidado e respeito aos pets. Ajude a espalhar essa ideia no seu bairro ou ambiente!
+                                Minha campanha é construída com a força de quem acredita em uma política feita com coragem, cuidado e compromisso com as pessoas e com os animais. Peça seu material, leve essa mensagem para sua rua, seu bairro e sua comunidade e me ajude a fortalecer esse movimento.
                             </p>
                             <p>
-                                Os adesivos servem para lembrar e reforçar o carinho e atenção aos animais. Preencha o formulário ao lado para pedir seu adesivo do Apollo gratuito. Entraremos em contato para entrega assim que possível!
+                                Sou candidato a deputado estadual com o número <b>55011</b>. Preencha o formulário e você receberá meu material de campanha.
                             </p>
                             <ul>
-                                <li>Os adesivos do Apollo são gratuitos e destinados à população em geral, especialmente a famílias com animais e protetores;</li>
+                                <li>Meus materiais de campanha são gratuitos para quem apoia o Apollo 55011;</li>
                                 <li>Preencha todos os seus dados corretamente para facilitar a entrega;</li>
                             </ul>
                             <blockquote>
-                                Espalhe a conscientização! Os adesivos reforçam o cuidado e respeito aos animais.
+                                Seu apoio faz a diferença: compartilhe minhas ideias e ajude minha campanha a chegar ainda mais longe.
                                 <br />
-                                Solicite já seu adesivo do Apollo e inspire sua vizinhança!
+                                Para deputado estadual, vote Apollo 55011!
                             </blockquote>
                         </div>
                     </motion.div>
@@ -358,6 +363,20 @@ E-mail: ${form.email}`;
                             </div>
                             <div className="flex items-center mt-1.5">
                                 <input
+                                    type="checkbox"
+                                    name="adesivoPerfurado"
+                                    id="adesivoPerfurado"
+                                    className="mr-2 dark:bg-slate-800 dark:border-slate-700"
+                                    checked={form.adesivoPerfurado}
+                                    onChange={handleChange}
+                                    disabled={submitting}
+                                />
+                                <label htmlFor="adesivoPerfurado" className="select-none dark:text-slate-100">
+                                    Quero o adesivo perfurado
+                                </label>
+                            </div>
+                            <div className="flex items-center mt-1.5">
+                                <input
                                     required
                                     type="checkbox"
                                     name="lgpd"
@@ -388,7 +407,7 @@ E-mail: ${form.email}`;
                             >
                                 {submitting
                                     ? "Enviando..."
-                                    : "Pedir meu adesivo do Apollo"}
+                                    : "Pedir meu material de campanha"}
                             </button>
                         </form>
                     </motion.div>
