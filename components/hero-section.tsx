@@ -82,7 +82,7 @@ export function HeroSection() {
             {/* Call to action buttons */}
             <motion.div className="flex flex-col sm:flex-row gap-4 pt-8" {...fadeUp(0.55)}>
               <Link
-                href="/adesivos"
+                href="/peca-meu-material"
                 className="group inline-flex items-center px-7 py-3 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-bold text-base shadow-md hover:from-blue-600 hover:via-blue-700 hover:to-blue-900 transition-all duration-200 focus:outline-none relative overflow-hidden cursor-pointer select-none"
               >
                 <span className="relative z-10 flex items-center gap-2">

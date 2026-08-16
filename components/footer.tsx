@@ -24,7 +24,7 @@ export function Footer() {
                 Peça suas coleiras
               </Link>
               <Link
-                href="/adesivos"
+                href="/peca-meu-material"
                 className="inline-flex justify-center whitespace-nowrap px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-semibold shadow hover:from-blue-600 hover:via-blue-700 hover:to-blue-900 transition-all duration-200 cursor-pointer select-none"
               >
                 Peça seu material de campanha
