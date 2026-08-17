@@ -1,6 +1,7 @@
 "use client"
 
 import { Download, ImagePlus, RefreshCw, ShieldCheck } from "lucide-react"
+import NextImage from "next/image"
 import { ChangeEvent, DragEvent, useRef, useState } from "react"
 import storyFilter from "@/assets/Filtro_Apollo_Vicz_55011_Transparente.png"
 
@@ -8,6 +9,23 @@ const STORY_WIDTH = 1080
 const STORY_HEIGHT = 1920
 const MAX_FILE_SIZE = 20 * 1024 * 1024
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"]
+const storyExamples = [
+  {
+    src: "/images/principal-nova.png",
+    alt: "Exemplo do filtro Apollo aplicado em uma foto vertical",
+    position: "center 28%",
+  },
+  {
+    src: "/images/acao-com-animal.jpg",
+    alt: "Exemplo do filtro Apollo aplicado em uma foto com animal",
+    position: "center",
+  },
+  {
+    src: "/images/crianca.png",
+    alt: "Exemplo do filtro Apollo aplicado em uma foto de apoiador",
+    position: "center",
+  },
+]
 
 function loadImage(src: string) {
   return new Promise<HTMLImageElement>((resolve, reject) => {
@@ -110,6 +128,43 @@ export default function MeuStoryPage() {
             Envie sua foto no formato Stories, aplique automaticamente o filtro oficial e baixe a imagem pronta para publicar.
           </p>
         </div>
+
+        <section className="mb-16" aria-labelledby="story-examples-title">
+          <div className="mb-7 text-center">
+            <h2 id="story-examples-title" className="font-serif text-3xl font-bold text-foreground">
+              Veja como seu Story pode ficar
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              O filtro oficial é aplicado sobre a foto e o resultado já fica pronto para publicar.
+            </p>
+          </div>
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-5 sm:grid-cols-3">
+            {storyExamples.map((example, index) => (
+              <div
+                key={example.src}
+                className="group relative mx-auto aspect-[9/16] w-full max-w-[260px] overflow-hidden rounded-2xl border border-border bg-muted shadow-lg shadow-primary/10"
+              >
+                <NextImage
+                  src={example.src}
+                  alt={example.alt}
+                  fill
+                  sizes="(max-width: 640px) 260px, 30vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  style={{ objectPosition: example.position }}
+                />
+                <NextImage
+                  src={storyFilter}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 260px, 30vw"
+                  className="pointer-events-none object-fill"
+                  aria-hidden="true"
+                  priority={index === 0}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
 
         <div className="grid items-start gap-10 lg:grid-cols-[1fr_420px]">
           <section className="rounded-3xl border border-border bg-card p-6 shadow-xl shadow-primary/5 md:p-9">
