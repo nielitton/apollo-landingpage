@@ -37,10 +37,10 @@ export function MissionSection() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <p className="text-primary font-medium tracking-wider uppercase text-sm">
+              <p className="poster-kicker text-sm">
                 Missão<CampaignNumber prefix=" · Apollo " />
               </p>
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground leading-tight">
+              <h2 className="poster-heading text-5xl md:text-7xl text-foreground leading-none">
                 Voz para quem não pode falar
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
@@ -63,7 +63,7 @@ export function MissionSection() {
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.5, delay: index * 0.12, ease: "easeOut" }}
                   >
-                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-12 h-12 rotate-2 bg-primary flex items-center justify-center shadow-[4px_4px_0_#561F12]">
                       <Icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>
@@ -85,18 +85,18 @@ export function MissionSection() {
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <div className="space-y-4">
-              <div className="relative aspect-square rounded-2xl bg-secondary border border-border overflow-hidden">
+              <div className="relative aspect-square -rotate-2 bg-secondary border-[6px] border-[#561F12] overflow-hidden shadow-[7px_7px_0_#FF4C00]">
                 <Image src="/images/foto-em-acao.png" alt="Apollo em ação na Câmara" fill className="object-cover" />
               </div>
-              <div className="relative aspect-[4/3] rounded-2xl bg-secondary border border-border overflow-hidden">
+              <div className="relative aspect-[4/3] rotate-1 bg-secondary border-[6px] border-[#561F12] overflow-hidden shadow-[7px_7px_0_#FF4C00]">
                 <Image src="/images/abrigo.png" alt="Apollo com animais resgatados" fill className="object-cover" />
               </div>
             </div>
             <div className="space-y-4 pt-8">
-              <div className="relative aspect-[4/3] rounded-2xl bg-secondary border border-border overflow-hidden">
+              <div className="relative aspect-[4/3] rotate-2 bg-secondary border-[6px] border-[#561F12] overflow-hidden shadow-[7px_7px_0_#FF4C00]">
                 <Image src="/images/abrigo-2.png" alt="Apollo em evento" fill className="object-cover" />
               </div>
-              <div className="relative aspect-square rounded-2xl bg-secondary border border-border overflow-hidden">
+              <div className="relative aspect-square -rotate-1 bg-secondary border-[6px] border-[#561F12] overflow-hidden shadow-[7px_7px_0_#FF4C00]">
                 <Image src="/images/crianca.png" alt="Apollo com a comunidade" fill className="object-cover" />
               </div>
             </div>

@@ -152,10 +152,10 @@ export function ProjectsSection() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <p className="text-primary font-medium tracking-wider uppercase text-sm">
+          <p className="poster-kicker text-sm">
             Projetos enquanto secretário de proteção animal do município<CampaignNumber prefix=" · Apollo " />
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
+          <h2 className="poster-heading text-5xl md:text-7xl text-foreground">
             Ações que Transformam
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -179,7 +179,7 @@ export function ProjectsSection() {
               {/* Text content */}
               <div className={`space-y-6 ${project.photos.length === 0 ? "w-[65%]" : "flex-1"}`}>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <div className="w-10 h-10 rotate-3 bg-[#561F12] flex items-center justify-center">
                     <PawPrint className="w-5 h-5 text-primary" />
                   </div>
                   <h3 className="font-serif text-3xl font-bold text-foreground">
@@ -199,12 +199,12 @@ export function ProjectsSection() {
                     {project.stats.map((stat) => (
                       <div
                         key={stat.label}
-                        className="text-center p-4 rounded-xl bg-background border border-border"
+                        className="border-4 border-[#561F12] bg-[#F8EAD3] p-4 text-center shadow-[5px_5px_0_#561F12]"
                       >
-                        <p className="font-serif text-2xl font-bold text-primary">
+                        <p className="font-serif text-2xl font-bold text-[#FF4C00]">
                           {stat.value}
                         </p>
-                        <p className="text-xs text-muted-foreground mt-1">
+                        <p className="text-xs text-[#561F12] mt-1">
                           {stat.label}
                         </p>
                       </div>
@@ -236,8 +236,8 @@ export function ProjectsSection() {
                             sizes="(max-width: 1024px) 100vw, 50vw"
                             quality={100}
                             style={photo.maxHeight
-                              ? { width: "auto", maxWidth: "100%", height: photo.maxHeight, borderRadius: "1.5rem" }
-                              : { width: "100%", height: "auto", borderRadius: "1.5rem" }
+                              ? { width: "auto", maxWidth: "100%", height: photo.maxHeight, border: "7px solid #F8EAD3", boxShadow: "10px 10px 0 #561F12" }
+                              : { width: "100%", height: "auto", border: "7px solid #F8EAD3", boxShadow: "10px 10px 0 #561F12" }
                             }
                           />
                         </div>

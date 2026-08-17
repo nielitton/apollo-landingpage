@@ -14,14 +14,14 @@ export function StatsSection() {
   return (
     <section id="numeros" className="py-20 mt-8 bg-card/50 border-y border-border">
       <div className="container mx-auto px-6">
-        <p className="mb-10 text-center text-primary font-semibold uppercase tracking-wider">
+        <p className="poster-kicker mb-12 left-1/2 relative -translate-x-1/2 text-center text-sm">
           Apollo<CampaignNumber />
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className="text-center space-y-2"
+              className="border-l-4 border-primary px-3 text-center space-y-2"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}

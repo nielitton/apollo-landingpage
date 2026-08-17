@@ -199,7 +199,7 @@ Quantidade desejada: ${form.quantidadeColeiras}`;
     return (
         <section
             id="coleiras"
-            className="py-24 bg-card/50 border-t border-border"
+            className="poster-surface py-24 bg-card/50 border-t-8 border-primary"
         >
             <div className="container mx-auto px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -212,10 +212,10 @@ Quantidade desejada: ${form.quantidadeColeiras}`;
                         transition={{ duration: 0.6, ease: "easeOut" }}
                     >
                         <div className="space-y-3">
-                            <p className="text-primary font-medium tracking-wider uppercase text-sm text-center lg:text-left">
+                            <p className="poster-kicker text-sm text-center lg:text-left">
                                 Coleiras luminosas de identificação<CampaignNumber prefix=" · Apollo " />
                             </p>
-                            <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground leading-tight text-center lg:text-left">
+                            <h2 className="poster-heading text-5xl md:text-7xl text-foreground text-center lg:text-left">
                                 PEÇA SUA COLEIRA LUMINOSA GRATUITA PARA IDENTIFICAÇÃO DE ANIMAIS!
                             </h2>
                         </div>
@@ -245,7 +245,7 @@ Quantidade desejada: ${form.quantidadeColeiras}`;
                     </motion.div>
                     {/* Formulário para solicitar coleiras luminosas */}
                     <motion.div
-                        className="bg-white dark:bg-slate-900 rounded-xl shadow-md p-5 border border-slate-200 dark:border-slate-700"
+                        className="bg-card p-5 border-4 border-[#561F12] shadow-[10px_10px_0_#FF4C00]"
                         initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-80px" }}

@@ -1,14 +1,43 @@
 "use client"
 
-import { Download, ImagePlus, RefreshCw, ShieldCheck } from "lucide-react"
+import { CircleUserRound, Download, ImagePlus, RefreshCw, ShieldCheck, Smartphone, Users } from "lucide-react"
 import NextImage from "next/image"
 import { ChangeEvent, DragEvent, useRef, useState } from "react"
 import storyFilter from "@/assets/Filtro_Apollo_Vicz_55011_Transparente.png"
+import profileFrame from "@/assets/Moldura_Redonda_Apollo_Vicz_55011_Transparente.png"
+import duoStoryFilter from "@/assets/Filtro_Stories_Jacqueline_1520_Apollo_55011_Transparente.png"
 
-const STORY_WIDTH = 1080
-const STORY_HEIGHT = 1920
 const MAX_FILE_SIZE = 20 * 1024 * 1024
+const PROFILE_PHOTO_RADIUS = 440
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"]
+type OutputFormat = "story" | "duoStory" | "profile"
+
+const outputFormats = {
+  story: {
+    label: "Story",
+    description: "Imagem vertical para Stories e status",
+    width: 1080,
+    height: 1920,
+    overlay: storyFilter.src,
+    fileName: "meu-story-apollo-vicz-55011.png",
+  },
+  duoStory: {
+    label: "Story Apollo + Jacqueline",
+    description: "Story conjunto com Apollo 55011 e Jacqueline 1520",
+    width: 1080,
+    height: 1920,
+    overlay: duoStoryFilter.src,
+    fileName: "meu-story-jacqueline-1520-apollo-55011.png",
+  },
+  profile: {
+    label: "Foto de perfil",
+    description: "Imagem quadrada com recorte e moldura circular",
+    width: 1080,
+    height: 1080,
+    overlay: profileFrame.src,
+    fileName: "minha-foto-perfil-apollo-vicz-55011.png",
+  },
+} as const
 const storyExamples = [
   {
     src: "/images/principal-nova.png",
@@ -44,8 +73,10 @@ export default function MeuStoryPage() {
   const [ready, setReady] = useState(false)
   const [processing, setProcessing] = useState(false)
   const [dragging, setDragging] = useState(false)
+  const [outputFormat, setOutputFormat] = useState<OutputFormat>("story")
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
-  async function processFile(file?: File) {
+  async function processFile(file?: File, format: OutputFormat = outputFormat) {
     setError("")
     setReady(false)
 
@@ -60,29 +91,48 @@ export default function MeuStoryPage() {
     }
 
     setProcessing(true)
+    setSelectedFile(file)
     const photoUrl = URL.createObjectURL(file)
 
     try {
+      const output = outputFormats[format]
       const photo = await loadImage(photoUrl)
-      const overlay = await loadImage(storyFilter.src)
+      const overlay = await loadImage(output.overlay)
       const canvas = canvasRef.current
       if (!canvas) throw new Error("Não foi possível preparar a montagem.")
 
       const context = canvas.getContext("2d")
       if (!context) throw new Error("Seu navegador não permite gerar a imagem.")
 
-      context.clearRect(0, 0, STORY_WIDTH, STORY_HEIGHT)
+      canvas.width = output.width
+      canvas.height = output.height
+      context.clearRect(0, 0, output.width, output.height)
+      const photoAreaWidth = format === "profile" ? PROFILE_PHOTO_RADIUS * 2 : output.width
+      const photoAreaHeight = format === "profile" ? PROFILE_PHOTO_RADIUS * 2 : output.height
       const scale = Math.max(
-        STORY_WIDTH / photo.naturalWidth,
-        STORY_HEIGHT / photo.naturalHeight
+        photoAreaWidth / photo.naturalWidth,
+        photoAreaHeight / photo.naturalHeight
       )
       const renderedWidth = photo.naturalWidth * scale
       const renderedHeight = photo.naturalHeight * scale
-      const offsetX = (STORY_WIDTH - renderedWidth) / 2
-      const offsetY = (STORY_HEIGHT - renderedHeight) / 2
+      const offsetX = (output.width - renderedWidth) / 2
+      const offsetY = (output.height - renderedHeight) / 2
 
+      if (format === "profile") {
+        context.save()
+        context.beginPath()
+        context.arc(
+          output.width / 2,
+          output.height / 2,
+          PROFILE_PHOTO_RADIUS,
+          0,
+          Math.PI * 2
+        )
+        context.clip()
+      }
       context.drawImage(photo, offsetX, offsetY, renderedWidth, renderedHeight)
-      context.drawImage(overlay, 0, 0, STORY_WIDTH, STORY_HEIGHT)
+      if (format === "profile") context.restore()
+      context.drawImage(overlay, 0, 0, output.width, output.height)
       setFileName(file.name)
       setReady(true)
     } catch (caughtError) {
@@ -109,10 +159,20 @@ export default function MeuStoryPage() {
     if (!canvas || !ready) return
 
     const link = document.createElement("a")
-    link.download = "meu-story-apollo-vicz-55011.png"
+    link.download = outputFormats[outputFormat].fileName
     link.href = canvas.toDataURL("image/png")
     link.click()
   }
+
+  function selectOutputFormat(format: OutputFormat) {
+    if (format === outputFormat) return
+    setOutputFormat(format)
+    setReady(false)
+    setError("")
+    if (selectedFile) void processFile(selectedFile, format)
+  }
+
+  const currentOutput = outputFormats[outputFormat]
 
   return (
     <main className="min-h-screen bg-background px-6 pb-20 pt-28">
@@ -121,28 +181,66 @@ export default function MeuStoryPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
             Seu apoio com a nossa identidade
           </p>
-          <h1 className="mt-3 font-serif text-4xl font-bold text-foreground md:text-6xl">
-            Crie seu Story com Apollo
+          <h1 className="poster-heading mt-3 text-5xl text-foreground md:text-7xl">
+            Crie sua imagem com Apollo
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Envie sua foto no formato Stories, aplique automaticamente o filtro oficial e baixe a imagem pronta para publicar.
+            Escolha o formato, envie sua foto, aplique automaticamente a identidade oficial e baixe a imagem pronta para publicar.
           </p>
         </div>
 
+        <section className="mx-auto mb-14 max-w-3xl" aria-labelledby="format-title">
+          <h2 id="format-title" className="mb-5 text-center font-serif text-2xl font-bold text-foreground">
+            Qual imagem você quer criar?
+          </h2>
+          <div className="grid gap-4 md:grid-cols-3">
+            {(["story", "duoStory", "profile"] as const).map((format) => {
+              const option = outputFormats[format]
+              const Icon = format === "story" ? Smartphone : format === "duoStory" ? Users : CircleUserRound
+              const selected = outputFormat === format
+              return (
+                <button
+                  key={format}
+                  type="button"
+                  aria-pressed={selected}
+                  onClick={() => selectOutputFormat(format)}
+                  className={`flex items-center gap-4 border-4 p-5 text-left transition-all ${
+                    selected
+                      ? "border-[#561F12] bg-primary text-primary-foreground shadow-[7px_7px_0_#561F12]"
+                      : "border-border bg-card text-foreground hover:border-primary"
+                  }`}
+                >
+                  <Icon className="size-8 shrink-0" />
+                  <span>
+                    <span className="block font-serif text-xl font-bold">{option.label}</span>
+                    <span className={`mt-1 block text-sm ${selected ? "text-primary-foreground/85" : "text-muted-foreground"}`}>
+                      {option.description}
+                    </span>
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        </section>
+
         <section className="mb-16" aria-labelledby="story-examples-title">
           <div className="mb-7 text-center">
-            <h2 id="story-examples-title" className="font-serif text-3xl font-bold text-foreground">
-              Veja como seu Story pode ficar
+            <h2 id="story-examples-title" className="poster-heading text-4xl text-foreground md:text-5xl">
+              {outputFormat === "profile"
+                ? "Veja como sua foto de perfil pode ficar"
+                : outputFormat === "duoStory"
+                  ? "Veja como o Story de Apollo e Jacqueline pode ficar"
+                  : "Veja como seu Story pode ficar"}
             </h2>
             <p className="mt-2 text-muted-foreground">
-              O filtro oficial é aplicado sobre a foto e o resultado já fica pronto para publicar.
+              A identidade oficial é aplicada sobre a foto e o resultado já fica pronto para publicar.
             </p>
           </div>
           <div className="mx-auto grid max-w-4xl grid-cols-1 gap-5 sm:grid-cols-3">
             {storyExamples.map((example, index) => (
               <div
                 key={example.src}
-                className="group relative mx-auto aspect-[9/16] w-full max-w-[260px] overflow-hidden rounded-2xl border border-border bg-muted shadow-lg shadow-primary/10"
+                className={`group relative mx-auto w-full max-w-[260px] overflow-hidden border border-border bg-muted shadow-lg shadow-primary/10 ${outputFormat === "profile" ? "aspect-square rounded-full" : "aspect-[9/16] rounded-2xl"}`}
               >
                 <NextImage
                   src={example.src}
@@ -150,10 +248,13 @@ export default function MeuStoryPage() {
                   fill
                   sizes="(max-width: 640px) 260px, 30vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  style={{ objectPosition: example.position }}
+                  style={{
+                    objectPosition: example.position,
+                    clipPath: outputFormat === "profile" ? "circle(40.74% at 50% 50%)" : undefined,
+                  }}
                 />
                 <NextImage
-                  src={storyFilter}
+                  src={outputFormat === "profile" ? profileFrame : outputFormat === "duoStory" ? duoStoryFilter : storyFilter}
                   alt=""
                   fill
                   sizes="(max-width: 640px) 260px, 30vw"
@@ -167,10 +268,10 @@ export default function MeuStoryPage() {
         </section>
 
         <div className="grid items-start gap-10 lg:grid-cols-[1fr_420px]">
-          <section className="rounded-3xl border border-border bg-card p-6 shadow-xl shadow-primary/5 md:p-9">
+          <section className="border-4 border-[#561F12] bg-card p-6 shadow-[10px_10px_0_#FF4C00] md:p-9">
             <h2 className="font-serif text-2xl font-bold text-foreground">Envie sua foto</h2>
             <p className="mt-2 text-muted-foreground">
-              Envie uma imagem de qualquer tamanho. Ela será enquadrada automaticamente no formato vertical do Story.
+              Envie uma imagem de qualquer tamanho. Ela será enquadrada automaticamente no formato {outputFormat === "profile" ? "quadrado da foto de perfil" : "vertical do Story"}.
             </p>
 
             <div
@@ -225,19 +326,19 @@ export default function MeuStoryPage() {
 
           <section className="lg:sticky lg:top-24">
             <div className="overflow-hidden rounded-3xl border border-border bg-card p-3 shadow-xl shadow-primary/10">
-              <div className="relative aspect-[9/16] overflow-hidden rounded-2xl bg-muted">
+              <div className={`relative overflow-hidden rounded-2xl bg-muted ${outputFormat === "profile" ? "aspect-square" : "aspect-[9/16]"}`}>
                 <canvas
                   ref={canvasRef}
-                  width={STORY_WIDTH}
-                  height={STORY_HEIGHT}
-                  aria-label="Prévia do Story com o filtro Apollo Vicz"
+                  width={currentOutput.width}
+                  height={currentOutput.height}
+                  aria-label={`Prévia de ${currentOutput.label} com a identidade Apollo Vicz`}
                   className={`h-full w-full object-contain transition-opacity ${ready ? "opacity-100" : "opacity-0"}`}
                 />
                 {!ready && (
                   <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
                     <ImagePlus className="size-10 text-primary/60" />
                     <p className="mt-4 font-serif text-xl font-bold text-foreground">Sua prévia aparecerá aqui</p>
-                    <p className="mt-2 text-sm text-muted-foreground">Formato final: 1080 × 1920 px</p>
+                    <p className="mt-2 text-sm text-muted-foreground">Formato final: {currentOutput.width} × {currentOutput.height} px</p>
                   </div>
                 )}
               </div>
@@ -252,7 +353,7 @@ export default function MeuStoryPage() {
                   className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary via-[#D82D04] to-[#9C320B] px-6 py-3.5 font-bold text-primary-foreground shadow-lg shadow-primary/20 transition hover:brightness-110"
                 >
                   <Download className="size-5" />
-                  Baixar Story em PNG
+                  Baixar {currentOutput.label} em PNG
                 </button>
               </div>
             )}

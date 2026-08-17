@@ -67,7 +67,7 @@ export function Header() {
                 goToHomeHash(router, "#")
               }
             }}
-            className="font-serif text-xl font-bold text-foreground hover:text-primary transition-colors"
+            className="font-serif text-2xl font-black uppercase tracking-tight text-foreground hover:text-primary transition-colors"
           >
             Apollo Vicz<CampaignNumber />
           </Link>
@@ -90,12 +90,12 @@ export function Header() {
           <div className="flex items-center gap-2">
             <Link
               href="/meu-story"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-3 py-2 text-sm font-bold text-primary-foreground shadow-md shadow-primary/20 transition-all hover:bg-[#D82D04] hover:shadow-lg sm:px-4"
-              aria-label="Criar meu Story com o filtro Apollo Vicz"
+              className="inline-flex items-center gap-2 rounded-sm border-2 border-[#F8EAD3] bg-[#561F12] px-3 py-2 text-sm font-black uppercase tracking-wide text-[#F8EAD3] shadow-[4px_4px_0_#9C320B] transition-all hover:-translate-y-0.5 hover:bg-[#4B2B25] sm:px-4"
+              aria-label="Criar imagem com a identidade Apollo Vicz"
             >
               <ImagePlus className="size-4" aria-hidden="true" />
-              <span className="hidden lg:inline">Crie seu Story</span>
-              <span className="lg:hidden">Story</span>
+              <span className="hidden lg:inline">Crie sua imagem</span>
+              <span className="lg:hidden">Criar</span>
             </Link>
 
             {mounted && (

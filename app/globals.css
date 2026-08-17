@@ -76,7 +76,7 @@
 
 @theme inline {
   --font-sans: var(--font-inter), 'Inter', sans-serif;
-  --font-serif: var(--font-playfair), 'Playfair Display', serif;
+  --font-serif: Impact, Haettenschweiler, 'Arial Narrow Bold', var(--font-inter), sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -143,6 +143,101 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-image: radial-gradient(circle at 15% 10%, rgb(255 76 0 / 0.07), transparent 28rem);
+    background-image:
+      radial-gradient(circle at 18% 12%, rgb(255 76 0 / 0.09), transparent 25rem),
+      repeating-linear-gradient(110deg, transparent 0 8px, rgb(86 31 18 / 0.018) 8px 9px);
+  }
+}
+
+@layer components {
+  .poster-surface {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .poster-surface::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.32;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgb(248 234 211 / 0.28) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 75% 65%, rgb(75 43 37 / 0.22) 0 1px, transparent 1.5px);
+    background-size: 9px 9px, 13px 13px;
+    mix-blend-mode: soft-light;
+  }
+
+  .poster-kicker {
+    display: inline-block;
+    padding: 0.45rem 0.8rem;
+    background: #561F12;
+    color: #F8EAD3;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transform: rotate(-1deg);
+    box-shadow: 5px 5px 0 rgb(75 43 37 / 0.2);
+  }
+
+  .poster-heading {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', var(--font-inter), sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 0.92;
+    text-transform: uppercase;
+  }
+
+  .poster-frame {
+    border: 8px solid #F8EAD3;
+    border-radius: 0.5rem;
+    box-shadow: 16px 16px 0 #561F12;
+    transform: rotate(1.5deg);
+  }
+
+  #numeros {
+    --foreground: #F8EAD3;
+    --muted-foreground: #E6C9A8;
+    --border: #805044;
+    background: #561F12;
+    border-block-width: 8px;
+    border-color: #FF4C00;
+  }
+
+  #trajetoria {
+    background-color: #F8EAD3;
+    background-image: repeating-linear-gradient(0deg, transparent 0 19px, rgb(86 31 18 / 0.025) 19px 20px);
+  }
+
+  #projetos {
+    --foreground: #F8EAD3;
+    --muted-foreground: #F1D7B8;
+    --primary: #F8EAD3;
+    --primary-foreground: #561F12;
+    --background: #561F12;
+    --border: #D82D04;
+    background: #FF4C00;
+    border-top: 10px solid #561F12;
+  }
+
+  #missao {
+    background: #F8EAD3;
+    border-top: 10px solid #FF4C00;
+  }
+
+  footer {
+    --foreground: #F8EAD3;
+    --muted-foreground: #E6C9A8;
+    --secondary: #683326;
+    --border: #805044;
+    background: #4B2B25 !important;
+    border-top: 10px solid #FF4C00 !important;
+  }
+
+  section h1,
+  section h2,
+  footer h3 {
+    text-wrap: balance;
   }
 }

@@ -156,11 +156,11 @@ Adesivo perfurado: ${form.adesivoPerfurado ? "Sim" : "Não"}`;
     return (
         <section
             id="adesivos"
-            className="py-24 bg-card/50 border-t border-border"
+            className="poster-surface py-24 bg-card/50 border-t-8 border-primary"
         >
             <div className="container mx-auto px-6">
                 <motion.div
-                    className="mb-12 overflow-hidden rounded-2xl border border-primary/20 bg-card shadow-xl shadow-primary/10"
+                    className="mb-12 overflow-hidden border-[6px] border-[#561F12] bg-card shadow-[12px_12px_0_#FF4C00]"
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
@@ -184,10 +184,10 @@ Adesivo perfurado: ${form.adesivoPerfurado ? "Sim" : "Não"}`;
                         transition={{ duration: 0.6, ease: "easeOut" }}
                     >
                         <div className="space-y-3">
-                            <p className="text-primary font-medium tracking-wider uppercase text-sm text-center lg:text-left">
+                            <p className="poster-kicker text-sm text-center lg:text-left">
                                 Material de campanha do Apollo<CampaignNumber />
                             </p>
-                            <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground leading-tight text-center lg:text-left">
+                            <h2 className="poster-heading text-5xl md:text-7xl text-foreground text-center lg:text-left">
                                 PEÇA SEU MATERIAL DE CAMPANHA DO APOLLO!
                             </h2>
                         </div>
@@ -211,7 +211,7 @@ Adesivo perfurado: ${form.adesivoPerfurado ? "Sim" : "Não"}`;
                     </motion.div>
                     {/* Formulário para solicitar adesivo */}
                     <motion.div
-                        className="bg-white dark:bg-slate-900 rounded-xl shadow-md p-5 border border-slate-200 dark:border-slate-700"
+                        className="bg-card p-5 border-4 border-[#561F12] shadow-[10px_10px_0_#FF4C00]"
                         initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-80px" }}
@@ -389,7 +389,7 @@ Adesivo perfurado: ${form.adesivoPerfurado ? "Sim" : "Não"}`;
                                     disabled={submitting}
                                 />
                                 <label htmlFor="adesivoPerfurado" className="select-none dark:text-slate-100">
-                                    Quero o adesivo perfurado
+                                    Quero adesivo perfurado para carro
                                 </label>
                             </div>
                             <div className="flex items-center mt-1.5">

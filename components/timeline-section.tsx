@@ -88,10 +88,10 @@ export function TimelineSection() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <p className="text-primary font-medium tracking-wider uppercase text-sm">
+          <p className="poster-kicker text-sm">
             Trajetória<CampaignNumber prefix=" · Apollo " />
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
+          <h2 className="poster-heading text-5xl md:text-7xl text-foreground">
             Uma História de Luta
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -124,7 +124,7 @@ export function TimelineSection() {
                     transition={{ duration: 0.55, ease: "easeOut" }}
                   >
                     <div className={`space-y-3 ${isEven ? "md:ml-auto" : ""} max-w-md`}>
-                      <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full">
+                      <span className="inline-block -rotate-1 bg-primary px-3 py-1 text-sm font-black uppercase tracking-wide text-primary-foreground shadow-[4px_4px_0_#9C320B]">
                         {item.year}
                       </span>
                       <h3 className="font-serif text-2xl font-bold text-foreground">
@@ -159,7 +159,7 @@ export function TimelineSection() {
                   >
                     {item.hasPhoto && item.photoSrc && (
                       <div className={`${isEven ? "" : "md:ml-auto"} max-w-sm`}>
-                        <div className="relative aspect-video rounded-xl bg-card border border-border overflow-hidden">
+                        <div className="relative aspect-video rotate-1 overflow-hidden border-4 border-[#561F12] bg-card shadow-[8px_8px_0_#FF4C00]">
                           <Image
                             src={item.photoSrc}
                             alt={item.photoLabel ?? item.title}

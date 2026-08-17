@@ -4,7 +4,6 @@ import { motion } from "framer-motion"
 import { Facebook, Instagram, Mail } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { CampaignNumber } from "@/components/campaign-number"
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
@@ -14,38 +13,48 @@ const fadeUp = (delay = 0) => ({
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center">
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/30" />
-      <div className="absolute top-20 right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+    <section className="poster-surface relative min-h-screen overflow-hidden bg-primary flex items-center">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-[#D82D04]" />
+      <div className="absolute -left-28 top-[18%] h-64 w-[58%] -rotate-3 bg-[#F8EAD3] opacity-95" />
+      <div className="absolute -bottom-40 -right-24 h-96 w-[65%] -rotate-12 bg-[#4B2B25]" />
+      <div className="absolute right-[38%] top-24 h-24 w-7 rotate-[58deg] bg-[#561F12]" />
 
       <div className="relative z-10 container mx-auto px-6 pt-28 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div className="space-y-8">
-            <motion.p
-              className="text-primary font-medium tracking-wider uppercase text-sm"
+          <div className="relative space-y-7">
+            <motion.div
+              className="inline-flex max-w-full -rotate-1 flex-wrap items-stretch border-4 border-[#F8EAD3] bg-[#561F12] font-serif font-black uppercase leading-none text-[#F8EAD3] shadow-[9px_9px_0_#9C320B]"
               {...fadeUp(0.1)}
             >
-              Candidato a Deputado Estadual<CampaignNumber />
-            </motion.p>
+              <span className="flex items-center px-4 py-3 text-xl sm:px-6 sm:text-2xl lg:text-3xl">
+                Candidato a Deputado Estadual
+              </span>
+            </motion.div>
 
             <motion.h1
-              className="font-serif text-5xl md:text-7xl font-bold text-foreground leading-tight"
+              className="poster-heading text-6xl text-[#561F12] sm:text-7xl md:text-8xl lg:text-9xl"
               {...fadeUp(0.2)}
             >
               Apollo Vicz
             </motion.h1>
 
+            <motion.div
+              className="inline-block -rotate-1 bg-[#561F12] px-5 py-2 font-serif text-5xl font-black tracking-tight text-[#F8EAD3] shadow-[8px_8px_0_#9C320B] md:text-7xl"
+              {...fadeUp(0.25)}
+            >
+              55011
+            </motion.div>
+
             <motion.p
-              className="text-xl md:text-2xl text-muted-foreground font-light"
+              className="text-xl md:text-2xl text-[#561F12] font-black uppercase tracking-wide"
               {...fadeUp(0.3)}
             >
               Protetor Animal & Ativista
             </motion.p>
 
             <motion.p
-              className="text-lg text-muted-foreground leading-relaxed max-w-xl"
+              className="max-w-xl text-lg font-medium leading-relaxed text-[#4B2B25]"
               {...fadeUp(0.4)}
             >
               20 anos dedicados à luta pela proteção animal. De São Miguel Paulista
@@ -58,24 +67,24 @@ export function HeroSection() {
                 href="https://www.instagram.com/apollovicz/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-secondary hover:bg-primary/20 transition-colors group"
+                className="p-3 rounded-sm bg-[#561F12] hover:bg-[#4B2B25] transition-colors group"
                 aria-label="Instagram"
               >
-                <Instagram className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                <Instagram className="w-5 h-5 text-[#F8EAD3] transition-colors" />
               </Link>
               <Link
                 href="#"
-                className="p-3 rounded-full bg-secondary hover:bg-primary/20 transition-colors group"
+                className="p-3 rounded-sm bg-[#561F12] hover:bg-[#4B2B25] transition-colors group"
                 aria-label="Facebook"
               >
-                <Facebook className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                <Facebook className="w-5 h-5 text-[#F8EAD3] transition-colors" />
               </Link>
               <Link
                 href="mailto:contato@apollovicz.com.br"
-                className="p-3 rounded-full bg-secondary hover:bg-primary/20 transition-colors group"
+                className="p-3 rounded-sm bg-[#561F12] hover:bg-[#4B2B25] transition-colors group"
                 aria-label="Enviar e-mail para a campanha"
               >
-                <Mail className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                <Mail className="w-5 h-5 text-[#F8EAD3] transition-colors" />
               </Link>
             </motion.div>
 
@@ -83,7 +92,7 @@ export function HeroSection() {
             <motion.div className="flex flex-col sm:flex-row gap-4 pt-8" {...fadeUp(0.55)}>
               <Link
                 href="/peca-meu-material"
-                className="group inline-flex items-center px-7 py-3 rounded-full bg-gradient-to-r from-primary via-[#D82D04] to-[#9C320B] text-primary-foreground font-bold text-base shadow-md shadow-primary/20 hover:brightness-110 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative overflow-hidden cursor-pointer select-none"
+                className="group inline-flex items-center px-7 py-3 rounded-sm bg-[#561F12] text-[#F8EAD3] font-black uppercase tracking-wide text-base shadow-[7px_7px_0_#9C320B] hover:-translate-y-1 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative overflow-hidden cursor-pointer select-none"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Peça seu material de campanha
@@ -91,7 +100,7 @@ export function HeroSection() {
               </Link>
               <Link
                 href="/coleiras"
-                className="group inline-flex items-center px-7 py-3 rounded-full border-2 border-primary bg-transparent text-foreground font-bold text-base shadow-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative overflow-hidden cursor-pointer select-none"
+                className="group inline-flex items-center px-7 py-3 rounded-sm border-4 border-[#561F12] bg-[#F8EAD3] text-[#561F12] font-black uppercase tracking-wide text-base shadow-[7px_7px_0_#561F12] hover:-translate-y-1 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative overflow-hidden cursor-pointer select-none"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Peça suas coleiras
@@ -102,7 +111,7 @@ export function HeroSection() {
             <motion.div className="pt-8" {...fadeUp(0.6)}>
               <Link
                 href="#trajetoria"
-                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+                className="inline-flex items-center gap-2 font-bold text-[#561F12] hover:text-[#4B2B25] transition-colors"
               >
                 <span className="text-sm font-medium">Conheça minha história</span>
                 <svg className="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -119,7 +128,7 @@ export function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" as any }}
           >
-            <div className="relative aspect-square rounded-2xl overflow-hidden bg-secondary border border-border">
+            <div className="poster-frame relative aspect-square overflow-hidden bg-secondary">
               <Image
                 src="/images/principal-nova.png"
                 alt="Apollo Vicz"
@@ -127,9 +136,8 @@ export function HeroSection() {
                 className="object-cover"
                 priority
               />
-              <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-primary/30 rounded-2xl -z-10" />
             </div>
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-xl overflow-hidden bg-card border border-border shadow-xl">
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 rotate-[-4deg] overflow-hidden border-4 border-[#F8EAD3] bg-card shadow-[8px_8px_0_#561F12]">
               <Image
                 src="/images/acao-com-animal.jpg"
                 alt="Apollo Vicz com animal"
