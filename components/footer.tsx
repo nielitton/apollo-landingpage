@@ -19,13 +19,13 @@ export function Footer() {
             <div className="flex flex-col items-start gap-3 pt-2">
               <Link
                 href="/coleiras"
-                className="inline-flex justify-center whitespace-nowrap px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-semibold shadow hover:from-blue-600 hover:via-blue-700 hover:to-blue-900 transition-all duration-200 cursor-pointer select-none"
+                className="inline-flex justify-center whitespace-nowrap px-4 py-2 rounded-full bg-primary text-primary-foreground font-semibold shadow shadow-primary/20 hover:bg-[#D82D04] transition-all duration-200 cursor-pointer select-none"
               >
                 Peça suas coleiras
               </Link>
               <Link
                 href="/peca-meu-material"
-                className="inline-flex justify-center whitespace-nowrap px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-semibold shadow hover:from-blue-600 hover:via-blue-700 hover:to-blue-900 transition-all duration-200 cursor-pointer select-none"
+                className="inline-flex justify-center whitespace-nowrap px-4 py-2 rounded-full border-2 border-primary text-foreground font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 cursor-pointer select-none"
               >
                 Peça seu material de campanha
               </Link>
@@ -81,6 +81,9 @@ export function Footer() {
               </Link>
               <Link href="/#projetos" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
                 Projetos
+              </Link>
+              <Link href="/meu-story" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
+                Crie seu Story
               </Link>
               <Link href="mailto:contato@apollovicz.com.br" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
                 Contato

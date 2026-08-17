@@ -83,7 +83,7 @@ export function HeroSection() {
             <motion.div className="flex flex-col sm:flex-row gap-4 pt-8" {...fadeUp(0.55)}>
               <Link
                 href="/peca-meu-material"
-                className="group inline-flex items-center px-7 py-3 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-bold text-base shadow-md hover:from-blue-600 hover:via-blue-700 hover:to-blue-900 transition-all duration-200 focus:outline-none relative overflow-hidden cursor-pointer select-none"
+                className="group inline-flex items-center px-7 py-3 rounded-full bg-gradient-to-r from-primary via-[#D82D04] to-[#9C320B] text-primary-foreground font-bold text-base shadow-md shadow-primary/20 hover:brightness-110 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative overflow-hidden cursor-pointer select-none"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Peça seu material de campanha
@@ -91,7 +91,7 @@ export function HeroSection() {
               </Link>
               <Link
                 href="/coleiras"
-                className="group inline-flex items-center px-7 py-3 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white font-bold text-base shadow-md hover:from-blue-600 hover:via-blue-700 hover:to-blue-900 transition-all duration-200 focus:outline-none relative overflow-hidden cursor-pointer select-none"
+                className="group inline-flex items-center px-7 py-3 rounded-full border-2 border-primary bg-transparent text-foreground font-bold text-base shadow-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative overflow-hidden cursor-pointer select-none"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Peça suas coleiras

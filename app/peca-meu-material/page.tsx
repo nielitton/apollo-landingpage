@@ -1,8 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useState } from "react";
 import { CampaignNumber } from "@/components/campaign-number";
+import materialBanner from "@/assets/peca-meu-material.png";
 
 const WHATSAPP_NUMBER = "5585986109152";
 const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzdk0p0bbfiGCf6EoL7zWdgCBFrYGA35vh7mFMVWOek7xRDZ5qZ1YtL8NTSmSDKSLxfiw/exec";
@@ -157,6 +159,21 @@ Adesivo perfurado: ${form.adesivoPerfurado ? "Sim" : "Não"}`;
             className="py-24 bg-card/50 border-t border-border"
         >
             <div className="container mx-auto px-6">
+                <motion.div
+                    className="mb-12 overflow-hidden rounded-2xl border border-primary/20 bg-card shadow-xl shadow-primary/10"
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                >
+                    <Image
+                        src={materialBanner}
+                        alt="Peça seu material de campanha do Apollo Vicz 55011"
+                        className="h-auto w-full object-cover"
+                        priority
+                        sizes="(max-width: 768px) 100vw, 1200px"
+                    />
+                </motion.div>
+
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Conteúdo informativo */}
                     <motion.div

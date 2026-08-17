@@ -1,6 +1,6 @@
 "use client"
 
-import { Menu, Moon, Sun, X } from "lucide-react"
+import { ImagePlus, Menu, Moon, Sun, X } from "lucide-react"
 import { useTheme } from "next-themes"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
@@ -38,6 +38,10 @@ export function Header() {
 
   // Handler para navegação nos links da navbar (desktop + mobile)
   function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    if (href.startsWith("/")) {
+      setMenuOpen(false)
+      return
+    }
     if (pathname !== "/") {
       e.preventDefault()
       goToHomeHash(router, href.startsWith("#") ? href : "")
@@ -48,7 +52,7 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-background/60 backdrop-blur-[7px] backdrop-saturate-150 border-b border-white/20 shadow-sm"
+        ? "bg-background/85 backdrop-blur-[10px] backdrop-saturate-150 border-b border-primary/15 shadow-sm"
         : "bg-transparent"
         }`}
     >
@@ -84,6 +88,16 @@ export function Header() {
 
           {/* Toggle + menu mobile */}
           <div className="flex items-center gap-2">
+            <Link
+              href="/meu-story"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-3 py-2 text-sm font-bold text-primary-foreground shadow-md shadow-primary/20 transition-all hover:bg-[#D82D04] hover:shadow-lg sm:px-4"
+              aria-label="Criar meu Story com o filtro Apollo Vicz"
+            >
+              <ImagePlus className="size-4" aria-hidden="true" />
+              <span className="hidden lg:inline">Crie seu Story</span>
+              <span className="lg:hidden">Story</span>
+            </Link>
+
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -116,7 +130,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-background/60 backdrop-blur-[7px] backdrop-saturate-150 border-b border-white/20">
+        <div className="md:hidden bg-background/95 backdrop-blur-[10px] backdrop-saturate-150 border-b border-primary/15">
           <nav className="container mx-auto px-6 py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link
