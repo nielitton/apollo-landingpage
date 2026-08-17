@@ -27,10 +27,10 @@ export function StatsSection() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
             >
-              <p className={`font-serif text-4xl md:text-5xl font-bold ${stat.highlight ? "text-primary" : "text-foreground"}`}>
+              <p className={`font-serif text-4xl md:text-5xl font-bold ${stat.highlight ? "text-[#FF4C00]" : "text-[#F8EAD3]"}`}>
                 {stat.number}
               </p>
-              <p className="text-muted-foreground text-sm uppercase tracking-wider">
+              <p className="text-sm uppercase tracking-wider text-[#E6C9A8]">
                 {stat.label}
               </p>
             </motion.div>

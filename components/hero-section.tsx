@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Facebook, Instagram, Mail } from "lucide-react"
+import { Facebook, ImagePlus, Instagram, Mail } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -13,16 +13,16 @@ const fadeUp = (delay = 0) => ({
 
 export function HeroSection() {
   return (
-    <section className="poster-surface relative min-h-screen overflow-hidden bg-primary flex items-center">
+    <section className="poster-surface relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-primary">
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-[#D82D04]" />
       <div className="absolute -left-28 top-[18%] h-64 w-[58%] -rotate-3 bg-[#F8EAD3] opacity-95" />
       <div className="absolute -bottom-40 -right-24 h-96 w-[65%] -rotate-12 bg-[#4B2B25]" />
       <div className="absolute right-[38%] top-24 h-24 w-7 rotate-[58deg] bg-[#561F12]" />
 
-      <div className="relative z-10 container mx-auto px-6 pt-28 pb-16">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 container mx-auto px-6 py-10 lg:py-8">
+        <div className="grid items-center gap-10 lg:grid-cols-2 xl:gap-12">
           {/* Content */}
-          <div className="relative space-y-7">
+          <div className="relative space-y-5">
             <motion.div
               className="inline-flex max-w-full -rotate-1 flex-wrap items-stretch border-4 border-[#F8EAD3] bg-[#561F12] font-serif font-black uppercase leading-none text-[#F8EAD3] shadow-[9px_9px_0_#9C320B]"
               {...fadeUp(0.1)}
@@ -33,14 +33,14 @@ export function HeroSection() {
             </motion.div>
 
             <motion.h1
-              className="poster-heading text-6xl text-[#561F12] sm:text-7xl md:text-8xl lg:text-9xl"
+              className="poster-heading text-6xl text-[#561F12] sm:text-7xl md:text-8xl lg:text-7xl xl:text-8xl"
               {...fadeUp(0.2)}
             >
               Apollo Vicz
             </motion.h1>
 
             <motion.div
-              className="inline-block -rotate-1 bg-[#561F12] px-5 py-2 font-serif text-5xl font-black tracking-tight text-[#F8EAD3] shadow-[8px_8px_0_#9C320B] md:text-7xl"
+              className="inline-block -rotate-1 bg-[#561F12] px-5 py-2 font-serif text-5xl font-black tracking-tight text-[#F8EAD3] shadow-[8px_8px_0_#9C320B] md:text-6xl xl:text-7xl"
               {...fadeUp(0.25)}
             >
               55011
@@ -62,7 +62,7 @@ export function HeroSection() {
               compromisso com os que não têm voz.
             </motion.p>
 
-            <motion.div className="flex items-center gap-4 pt-4" {...fadeUp(0.5)}>
+            <motion.div className="flex items-center gap-4 pt-2" {...fadeUp(0.5)}>
               <Link
                 href="https://www.instagram.com/apollovicz/"
                 target="_blank"
@@ -89,7 +89,7 @@ export function HeroSection() {
             </motion.div>
 
             {/* Call to action buttons */}
-            <motion.div className="flex flex-col sm:flex-row gap-4 pt-8" {...fadeUp(0.55)}>
+            <motion.div className="flex flex-col gap-4 pt-4 sm:flex-row" {...fadeUp(0.55)}>
               <Link
                 href="/peca-meu-material"
                 className="group inline-flex items-center px-7 py-3 rounded-sm bg-[#561F12] text-[#F8EAD3] font-black uppercase tracking-wide text-base shadow-[7px_7px_0_#9C320B] hover:-translate-y-1 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative overflow-hidden cursor-pointer select-none"
@@ -99,16 +99,20 @@ export function HeroSection() {
                 </span>
               </Link>
               <Link
-                href="/coleiras"
-                className="group inline-flex items-center px-7 py-3 rounded-sm border-4 border-[#561F12] bg-[#F8EAD3] text-[#561F12] font-black uppercase tracking-wide text-base shadow-[7px_7px_0_#561F12] hover:-translate-y-1 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative overflow-hidden cursor-pointer select-none"
+                href="/meu-story"
+                className="group inline-flex items-center gap-3 rounded-sm border-4 border-[#561F12] bg-[#F8EAD3] px-5 py-3 text-[#561F12] shadow-[7px_7px_0_#561F12] hover:-translate-y-1 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative overflow-hidden cursor-pointer select-none"
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  Peça suas coleiras
+                <ImagePlus className="size-7 shrink-0 text-[#FF4C00]" aria-hidden="true" />
+                <span className="relative z-10 text-left">
+                  <span className="block font-black uppercase tracking-wide">Crie sua foto personalizada</span>
+                  <span className="mt-0.5 block text-xs font-bold normal-case tracking-normal text-[#774537]">
+                    Story ou foto de perfil com a moldura da campanha
+                  </span>
                 </span>
               </Link>
             </motion.div>
 
-            <motion.div className="pt-8" {...fadeUp(0.6)}>
+            <motion.div className="pt-3" {...fadeUp(0.6)}>
               <Link
                 href="#trajetoria"
                 className="inline-flex items-center gap-2 font-bold text-[#561F12] hover:text-[#4B2B25] transition-colors"
@@ -123,7 +127,7 @@ export function HeroSection() {
 
           {/* Photo */}
           <motion.div
-            className="relative"
+            className="relative mx-auto w-full max-w-[620px] lg:max-w-[560px] xl:max-w-[620px]"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" as any }}

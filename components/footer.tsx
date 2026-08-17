@@ -1,4 +1,4 @@
-import { Instagram, Mail, MapPin } from "lucide-react"
+import { ImagePlus, Instagram, Mail, MapPin } from "lucide-react"
 import Link from "next/link"
 import { CampaignNumber } from "@/components/campaign-number"
 
@@ -10,7 +10,7 @@ export function Footer() {
       <div className="relative container mx-auto px-6">
         <div className="mb-14 flex flex-col items-start justify-between gap-6 border-b-4 border-primary pb-10 md:flex-row md:items-end">
           <div>
-            <p className="poster-kicker text-sm">Deputado Estadual</p>
+            <p className="poster-kicker text-sm">Candidato a Deputado Estadual</p>
             <h2 className="poster-heading mt-5 text-6xl text-foreground sm:text-7xl md:text-8xl">
               Apollo Vicz
             </h2>
@@ -29,10 +29,11 @@ export function Footer() {
             </p>
             <div className="flex flex-col items-start gap-3 pt-2">
               <Link
-                href="/coleiras"
-                className="inline-flex justify-center whitespace-nowrap bg-primary px-5 py-3 font-black uppercase tracking-wide text-primary-foreground shadow-[5px_5px_0_#9C320B] transition-all duration-200 hover:-translate-y-1 hover:bg-[#D82D04] cursor-pointer select-none"
+                href="/meu-story"
+                className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-black uppercase tracking-wide text-primary-foreground shadow-[5px_5px_0_#9C320B] transition-all duration-200 hover:-translate-y-1 hover:bg-[#D82D04] cursor-pointer select-none"
               >
-                Peça suas coleiras
+                <ImagePlus className="size-5" aria-hidden="true" />
+                Crie seu Story ou foto
               </Link>
               <Link
                 href="/peca-meu-material"
@@ -94,7 +95,7 @@ export function Footer() {
                 Projetos
               </Link>
               <Link href="/meu-story" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
-                Crie sua imagem
+                Crie seu Story ou foto
               </Link>
               <Link href="mailto:contato@apollovicz.com.br" className="block text-muted-foreground text-sm hover:text-primary transition-colors">
                 Contato

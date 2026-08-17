@@ -46,7 +46,7 @@ export function TimelineSection() {
     },
     {
       year: "2022",
-      title: "Deputado Estadual",
+      title: "Candidato a Deputado Estadual",
       description: "Concorreu ao cargo de deputado estadual, conquistando expressivos 30.119 votos e ficando com a segunda suplência.",
       icon: Building2,
       hasPhoto: true,

@@ -205,7 +205,7 @@ Adesivo perfurado: ${form.adesivoPerfurado ? "Sim" : "Não"}`;
                             <blockquote>
                                 Seu apoio faz a diferença: compartilhe minhas ideias e ajude minha campanha a chegar ainda mais longe.
                                 <br />
-                                Para deputado estadual, vote Apollo 55011!
+                                Para eleger Apollo deputado estadual, vote Apollo 55011!
                             </blockquote>
                         </div>
                     </motion.div>

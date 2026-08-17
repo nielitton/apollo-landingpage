@@ -175,7 +175,7 @@ export default function MeuStoryPage() {
   const currentOutput = outputFormats[outputFormat]
 
   return (
-    <main className="min-h-screen bg-background px-6 pb-20 pt-28">
+    <main className="min-h-screen bg-background px-6 pb-20 pt-16">
       <div className="container mx-auto max-w-6xl">
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">

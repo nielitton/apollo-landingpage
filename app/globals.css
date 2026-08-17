@@ -150,6 +150,10 @@
 }
 
 @layer components {
+  .site-header {
+    min-height: 4rem;
+  }
+
   .poster-surface {
     position: relative;
     isolation: isolate;
@@ -211,14 +215,19 @@
   }
 
   #projetos {
-    --foreground: #F8EAD3;
-    --muted-foreground: #F1D7B8;
-    --primary: #F8EAD3;
-    --primary-foreground: #561F12;
-    --background: #561F12;
-    --border: #D82D04;
+    --foreground: #561F12;
+    --muted-foreground: #774537;
+    --primary: #FF4C00;
+    --primary-foreground: #F8EAD3;
+    --background: #F8EAD3;
+    --border: #D6B694;
+    background: #F8EAD3;
+    border-top: 10px solid #FF4C00;
+  }
+
+  #projetos .poster-kicker {
     background: #FF4C00;
-    border-top: 10px solid #561F12;
+    box-shadow: 5px 5px 0 #9C320B;
   }
 
   #missao {

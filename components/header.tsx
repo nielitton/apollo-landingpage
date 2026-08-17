@@ -1,11 +1,9 @@
 "use client"
 
-import { ImagePlus, Menu, Moon, Sun, X } from "lucide-react"
-import { useTheme } from "next-themes"
+import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
-import { CampaignNumber } from "@/components/campaign-number"
+import { useState } from "react"
 
 const navLinks = [
   { label: "Início", href: "#" },
@@ -22,19 +20,9 @@ function goToHomeHash(router: ReturnType<typeof useRouter>, hash: string) {
 }
 
 export function Header() {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
-
-  useEffect(() => {
-    setMounted(true)
-    const onScroll = () => setScrolled(window.scrollY > 10)
-    window.addEventListener("scroll", onScroll)
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
 
   // Handler para navegação nos links da navbar (desktop + mobile)
   function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
@@ -50,13 +38,8 @@ export function Header() {
   }
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-background/85 backdrop-blur-[10px] backdrop-saturate-150 border-b border-primary/15 shadow-sm"
-        : "bg-transparent"
-        }`}
-    >
-      <div className="container mx-auto px-6">
+    <header className="site-header sticky top-0 z-50 w-full border-b border-primary/15 bg-background shadow-sm md:bg-background/90 md:backdrop-blur-[10px] md:backdrop-saturate-150">
+      <div className="container mx-auto px-3 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link
@@ -67,9 +50,9 @@ export function Header() {
                 goToHomeHash(router, "#")
               }
             }}
-            className="font-serif text-2xl font-black uppercase tracking-tight text-foreground hover:text-primary transition-colors"
+            className="font-serif text-xl font-black uppercase tracking-tight text-foreground hover:text-primary transition-colors sm:text-2xl"
           >
-            Apollo Vicz<CampaignNumber />
+            Apollo Vicz
           </Link>
 
           {/* Desktop nav */}
@@ -88,30 +71,6 @@ export function Header() {
 
           {/* Toggle + menu mobile */}
           <div className="flex items-center gap-2">
-            <Link
-              href="/meu-story"
-              className="inline-flex items-center gap-2 rounded-sm border-2 border-[#F8EAD3] bg-[#561F12] px-3 py-2 text-sm font-black uppercase tracking-wide text-[#F8EAD3] shadow-[4px_4px_0_#9C320B] transition-all hover:-translate-y-0.5 hover:bg-[#4B2B25] sm:px-4"
-              aria-label="Criar imagem com a identidade Apollo Vicz"
-            >
-              <ImagePlus className="size-4" aria-hidden="true" />
-              <span className="hidden lg:inline">Crie sua imagem</span>
-              <span className="lg:hidden">Criar</span>
-            </Link>
-
-            {mounted && (
-              <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="p-2 rounded-full hover:bg-secondary transition-colors"
-                aria-label="Alternar tema"
-              >
-                {theme === "dark" ? (
-                  <Sun className="w-5 h-5 text-muted-foreground" />
-                ) : (
-                  <Moon className="w-5 h-5 text-muted-foreground" />
-                )}
-              </button>
-            )}
-
             {/* Mobile menu button */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}

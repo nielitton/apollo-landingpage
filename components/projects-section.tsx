@@ -155,10 +155,10 @@ export function ProjectsSection() {
           <p className="poster-kicker text-sm">
             Projetos enquanto secretário de proteção animal do município<CampaignNumber prefix=" · Apollo " />
           </p>
-          <h2 className="poster-heading text-5xl md:text-7xl text-foreground">
+          <h2 className="poster-heading text-5xl text-[#561F12] md:text-7xl">
             Ações que Transformam
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-[#774537]">
             Iniciativas concretas que levam saúde, proteção e dignidade aos
             animais e às comunidades de Fortaleza.
           </p>
@@ -179,17 +179,17 @@ export function ProjectsSection() {
               {/* Text content */}
               <div className={`space-y-6 ${project.photos.length === 0 ? "w-[65%]" : "flex-1"}`}>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rotate-3 bg-[#561F12] flex items-center justify-center">
-                    <PawPrint className="w-5 h-5 text-primary" />
+                  <div className="w-10 h-10 rotate-3 bg-primary flex items-center justify-center shadow-[4px_4px_0_#9C320B]">
+                    <PawPrint className="w-5 h-5 text-primary-foreground" />
                   </div>
-                  <h3 className="font-serif text-3xl font-bold text-foreground">
+                  <h3 className="font-serif text-3xl font-bold text-[#561F12]">
                     {project.name}
                   </h3>
                 </div>
 
-                <p className="text-primary font-medium">{project.tagline}</p>
+                <p className="font-bold text-[#FF4C00]">{project.tagline}</p>
 
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="leading-relaxed text-[#774537]">
                   {project.description}
                 </p>
 
@@ -212,7 +212,7 @@ export function ProjectsSection() {
                   </div>
                 )}
 
-                <p className="text-sm text-muted-foreground italic border-l-2 border-primary/40 pl-4">
+                <p className="border-l-4 border-[#FF4C00] pl-4 text-sm italic text-[#774537]">
                   {project.detail}
                 </p>
               </div>
@@ -278,7 +278,7 @@ export function ProjectsSection() {
         <div className="flex items-center justify-center gap-6 mt-10">
           <button
             onClick={prev}
-            className="w-10 h-10 rounded-full border border-border bg-background hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors flex items-center justify-center"
+            className="w-10 h-10 rounded-full border border-border bg-background text-[#561F12] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors flex items-center justify-center"
             aria-label="Projeto anterior"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -302,7 +302,7 @@ export function ProjectsSection() {
 
           <button
             onClick={next}
-            className="w-10 h-10 rounded-full border border-border bg-background hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors flex items-center justify-center"
+            className="w-10 h-10 rounded-full border border-border bg-background text-[#561F12] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors flex items-center justify-center"
             aria-label="Próximo projeto"
           >
             <ChevronRight className="w-5 h-5" />
