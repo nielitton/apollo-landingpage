@@ -201,10 +201,10 @@
   }
 
   #numeros {
-    --foreground: #F8EAD3;
-    --muted-foreground: #E6C9A8;
-    --border: #805044;
-    background: #561F12;
+    --foreground: #561F12;
+    --muted-foreground: #774537;
+    --border: #D6B694;
+    background: #F8EAD3 !important;
     border-block-width: 8px;
     border-color: #FF4C00;
   }
