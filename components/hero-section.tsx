@@ -55,7 +55,7 @@ export function HeroSection() {
               className="max-w-xl text-lg font-medium leading-relaxed text-[#4B2B25]"
               {...fadeUp(0.4)}
             >
-              20 anos dedicados à luta pela proteção animal. De São Miguel Paulista
+              19 anos dedicados à luta pela proteção animal. De São Miguel Paulista
               para a vida pública no Ceará, uma trajetória de resiliência, amor e
               compromisso com os que não têm voz.
             </motion.p>
