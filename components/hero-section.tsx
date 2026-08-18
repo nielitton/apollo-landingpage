@@ -16,8 +16,6 @@ export function HeroSection() {
     <section className="poster-surface relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-primary">
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-[#D82D04]" />
       <div className="absolute -left-28 top-[18%] h-64 w-[58%] -rotate-3 bg-[#F8EAD3] opacity-95" />
-      <div className="absolute -bottom-40 -right-24 h-96 w-[65%] -rotate-12 bg-[#4B2B25]" />
-      <div className="absolute right-[38%] top-24 h-24 w-7 rotate-[58deg] bg-[#561F12]" />
 
       <div className="relative z-10 container mx-auto px-6 py-10 lg:py-8">
         <div className="grid items-center gap-10 lg:grid-cols-2 xl:gap-12">

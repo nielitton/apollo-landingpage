@@ -38,9 +38,10 @@ export function Header() {
   }
 
   return (
-    <header className="site-header sticky top-0 z-50 w-full border-b border-primary/15 bg-background shadow-sm md:bg-background/90 md:backdrop-blur-[10px] md:backdrop-saturate-150">
+    <>
+    <header id="site-header" className="fixed inset-x-0 top-0 z-[9999] h-16 w-full border-b border-primary/15 bg-background shadow-sm">
       <div className="container mx-auto px-3 sm:px-6">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link
             href="#"
@@ -89,7 +90,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-[10px] backdrop-saturate-150 border-b border-primary/15">
+        <div className="absolute inset-x-0 top-full border-b border-primary/15 bg-background md:hidden">
           <nav className="container mx-auto px-6 py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link
@@ -105,5 +106,7 @@ export function Header() {
         </div>
       )}
     </header>
+    <div className="h-16 shrink-0" aria-hidden="true" />
+    </>
   )
 }
