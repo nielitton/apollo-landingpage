@@ -1,6 +1,6 @@
 "use client"
 
-import { CircleUserRound, Download, ImagePlus, RefreshCw, ShieldCheck, Smartphone, Users } from "lucide-react"
+import { CircleUserRound, Download, ImagePlus, RefreshCw, Share2, ShieldCheck, Smartphone, Users } from "lucide-react"
 import NextImage from "next/image"
 import { ChangeEvent, DragEvent, useRef, useState } from "react"
 import storyFilter from "@/assets/Filtro_Apollo_Vicz_55011_Transparente.png"
@@ -65,6 +65,15 @@ function loadImage(src: string) {
   })
 }
 
+function canvasToPng(canvas: HTMLCanvasElement) {
+  return new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) resolve(blob)
+      else reject(new Error("Não foi possível preparar o arquivo PNG."))
+    }, "image/png")
+  })
+}
+
 export default function MeuStoryPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -75,10 +84,13 @@ export default function MeuStoryPage() {
   const [dragging, setDragging] = useState(false)
   const [outputFormat, setOutputFormat] = useState<OutputFormat>("story")
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const [outputBlob, setOutputBlob] = useState<Blob | null>(null)
+  const [sharing, setSharing] = useState(false)
 
   async function processFile(file?: File, format: OutputFormat = outputFormat) {
     setError("")
     setReady(false)
+    setOutputBlob(null)
 
     if (!file) return
     if (!ACCEPTED_TYPES.includes(file.type)) {
@@ -133,6 +145,8 @@ export default function MeuStoryPage() {
       context.drawImage(photo, offsetX, offsetY, renderedWidth, renderedHeight)
       if (format === "profile") context.restore()
       context.drawImage(overlay, 0, 0, output.width, output.height)
+      const pngBlob = await canvasToPng(canvas)
+      setOutputBlob(pngBlob)
       setFileName(file.name)
       setReady(true)
     } catch (caughtError) {
@@ -154,14 +168,35 @@ export default function MeuStoryPage() {
     void processFile(event.dataTransfer.files?.[0])
   }
 
-  function downloadStory() {
-    const canvas = canvasRef.current
-    if (!canvas || !ready) return
+  async function saveStory() {
+    if (!outputBlob || !ready || sharing) return
 
+    const output = outputFormats[outputFormat]
+    const file = new File([outputBlob], output.fileName, { type: "image/png" })
+    const shareData = { files: [file], title: output.label }
+
+    if (navigator.share && navigator.canShare?.(shareData)) {
+      setSharing(true)
+      try {
+        await navigator.share(shareData)
+      } catch (caughtError) {
+        if (!(caughtError instanceof DOMException && caughtError.name === "AbortError")) {
+          setError("Não foi possível abrir as opções de compartilhamento. Tente novamente.")
+        }
+      } finally {
+        setSharing(false)
+      }
+      return
+    }
+
+    const imageUrl = URL.createObjectURL(outputBlob)
     const link = document.createElement("a")
-    link.download = outputFormats[outputFormat].fileName
-    link.href = canvas.toDataURL("image/png")
+    link.download = output.fileName
+    link.href = imageUrl
+    document.body.appendChild(link)
     link.click()
+    link.remove()
+    window.setTimeout(() => URL.revokeObjectURL(imageUrl), 1_000)
   }
 
   function selectOutputFormat(format: OutputFormat) {
@@ -349,12 +384,17 @@ export default function MeuStoryPage() {
                 <p className="mb-3 truncate text-center text-sm text-muted-foreground">Foto: {fileName}</p>
                 <button
                   type="button"
-                  onClick={downloadStory}
+                  onClick={() => void saveStory()}
+                  disabled={sharing}
                   className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary via-[#D82D04] to-[#9C320B] px-6 py-3.5 font-bold text-primary-foreground shadow-lg shadow-primary/20 transition hover:brightness-110"
                 >
-                  <Download className="size-5" />
-                  Baixar {currentOutput.label} em PNG
+                  {sharing ? <RefreshCw className="size-5 animate-spin" /> : <Share2 className="size-5 md:hidden" />}
+                  {!sharing && <Download className="hidden size-5 md:block" />}
+                  {sharing ? "Abrindo opções..." : `Salvar ou compartilhar ${currentOutput.label}`}
                 </button>
+                <p className="mt-3 text-center text-xs leading-relaxed text-muted-foreground md:hidden">
+                  No iPhone, toque em <strong>Salvar Imagem</strong> nas opções para enviar a foto ao app Fotos.
+                </p>
               </div>
             )}
           </section>
