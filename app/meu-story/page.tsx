@@ -6,11 +6,12 @@ import { ChangeEvent, DragEvent, useRef, useState } from "react"
 import storyFilter from "@/assets/Filtro_Apollo_Vicz_55011_Transparente.png"
 import profileFrame from "@/assets/Moldura_Redonda_Apollo_Vicz_55011_Transparente.png"
 import duoStoryFilter from "@/assets/Filtro_Stories_Jacqueline_1520_Apollo_55011_Transparente.png"
+import duoProfileFrame from "@/assets/Moldura_Redonda_Apollo_Jacqueline_Transparente.png"
 
 const MAX_FILE_SIZE = 20 * 1024 * 1024
 const PROFILE_PHOTO_RADIUS = 440
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"]
-type OutputFormat = "story" | "duoStory" | "profile"
+type OutputFormat = "story" | "duoStory" | "profile" | "duoProfile"
 
 const outputFormats = {
   story: {
@@ -37,7 +38,21 @@ const outputFormats = {
     overlay: profileFrame.src,
     fileName: "minha-foto-perfil-apollo-vicz-55011.png",
   },
+  duoProfile: {
+    label: "Perfil Apollo + Jacqueline",
+    description: "Foto de perfil com a moldura conjunta da campanha",
+    width: 1080,
+    height: 1080,
+    overlay: duoProfileFrame.src,
+    fileName: "minha-foto-perfil-jacqueline-1520-apollo-55011.png",
+  },
 } as const
+
+const outputFormatKeys: OutputFormat[] = ["story", "duoStory", "profile", "duoProfile"]
+
+function isProfileFormat(format: OutputFormat) {
+  return format === "profile" || format === "duoProfile"
+}
 const storyExamples = [
   {
     src: "/images/principal-nova.png",
@@ -119,8 +134,9 @@ export default function MeuStoryPage() {
       canvas.width = output.width
       canvas.height = output.height
       context.clearRect(0, 0, output.width, output.height)
-      const photoAreaWidth = format === "profile" ? PROFILE_PHOTO_RADIUS * 2 : output.width
-      const photoAreaHeight = format === "profile" ? PROFILE_PHOTO_RADIUS * 2 : output.height
+      const profileOutput = isProfileFormat(format)
+      const photoAreaWidth = profileOutput ? PROFILE_PHOTO_RADIUS * 2 : output.width
+      const photoAreaHeight = profileOutput ? PROFILE_PHOTO_RADIUS * 2 : output.height
       const scale = Math.max(
         photoAreaWidth / photo.naturalWidth,
         photoAreaHeight / photo.naturalHeight
@@ -130,7 +146,7 @@ export default function MeuStoryPage() {
       const offsetX = (output.width - renderedWidth) / 2
       const offsetY = (output.height - renderedHeight) / 2
 
-      if (format === "profile") {
+      if (profileOutput) {
         context.save()
         context.beginPath()
         context.arc(
@@ -143,7 +159,7 @@ export default function MeuStoryPage() {
         context.clip()
       }
       context.drawImage(photo, offsetX, offsetY, renderedWidth, renderedHeight)
-      if (format === "profile") context.restore()
+      if (profileOutput) context.restore()
       context.drawImage(overlay, 0, 0, output.width, output.height)
       const pngBlob = await canvasToPng(canvas)
       setOutputBlob(pngBlob)
@@ -228,10 +244,10 @@ export default function MeuStoryPage() {
           <h2 id="format-title" className="mb-5 text-center font-serif text-2xl font-bold text-foreground">
             Qual imagem você quer criar?
           </h2>
-          <div className="grid gap-4 md:grid-cols-3">
-            {(["story", "duoStory", "profile"] as const).map((format) => {
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {outputFormatKeys.map((format) => {
               const option = outputFormats[format]
-              const Icon = format === "story" ? Smartphone : format === "duoStory" ? Users : CircleUserRound
+              const Icon = format === "story" ? Smartphone : format === "duoStory" || format === "duoProfile" ? Users : CircleUserRound
               const selected = outputFormat === format
               return (
                 <button
@@ -261,8 +277,10 @@ export default function MeuStoryPage() {
         <section className="mb-16" aria-labelledby="story-examples-title">
           <div className="mb-7 text-center">
             <h2 id="story-examples-title" className="poster-heading text-4xl text-foreground md:text-5xl">
-              {outputFormat === "profile"
-                ? "Veja como sua foto de perfil pode ficar"
+              {isProfileFormat(outputFormat)
+                ? outputFormat === "duoProfile"
+                  ? "Veja como sua foto com Apollo e Jacqueline pode ficar"
+                  : "Veja como sua foto de perfil pode ficar"
                 : outputFormat === "duoStory"
                   ? "Veja como o Story de Apollo e Jacqueline pode ficar"
                   : "Veja como seu Story pode ficar"}
@@ -275,7 +293,7 @@ export default function MeuStoryPage() {
             {storyExamples.map((example, index) => (
               <div
                 key={example.src}
-                className={`group relative mx-auto w-full max-w-[260px] overflow-hidden border border-border bg-muted shadow-lg shadow-primary/10 ${outputFormat === "profile" ? "aspect-square rounded-full" : "aspect-[9/16] rounded-2xl"}`}
+                className={`group relative mx-auto w-full max-w-[260px] overflow-hidden border border-border bg-muted shadow-lg shadow-primary/10 ${isProfileFormat(outputFormat) ? "aspect-square rounded-full" : "aspect-[9/16] rounded-2xl"}`}
               >
                 <NextImage
                   src={example.src}
@@ -285,11 +303,11 @@ export default function MeuStoryPage() {
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   style={{
                     objectPosition: example.position,
-                    clipPath: outputFormat === "profile" ? "circle(40.74% at 50% 50%)" : undefined,
+                    clipPath: isProfileFormat(outputFormat) ? "circle(40.74% at 50% 50%)" : undefined,
                   }}
                 />
                 <NextImage
-                  src={outputFormat === "profile" ? profileFrame : outputFormat === "duoStory" ? duoStoryFilter : storyFilter}
+                  src={outputFormat === "profile" ? profileFrame : outputFormat === "duoProfile" ? duoProfileFrame : outputFormat === "duoStory" ? duoStoryFilter : storyFilter}
                   alt=""
                   fill
                   sizes="(max-width: 640px) 260px, 30vw"
@@ -306,7 +324,7 @@ export default function MeuStoryPage() {
           <section className="border-4 border-[#561F12] bg-card p-6 shadow-[10px_10px_0_#FF4C00] md:p-9">
             <h2 className="font-serif text-2xl font-bold text-foreground">Envie sua foto</h2>
             <p className="mt-2 text-muted-foreground">
-              Envie uma imagem de qualquer tamanho. Ela será enquadrada automaticamente no formato {outputFormat === "profile" ? "quadrado da foto de perfil" : "vertical do Story"}.
+              Envie uma imagem de qualquer tamanho. Ela será enquadrada automaticamente no formato {isProfileFormat(outputFormat) ? "quadrado da foto de perfil" : "vertical do Story"}.
             </p>
 
             <div
@@ -361,7 +379,7 @@ export default function MeuStoryPage() {
 
           <section className="lg:sticky lg:top-24">
             <div className="overflow-hidden rounded-3xl border border-border bg-card p-3 shadow-xl shadow-primary/10">
-              <div className={`relative overflow-hidden rounded-2xl bg-muted ${outputFormat === "profile" ? "aspect-square" : "aspect-[9/16]"}`}>
+              <div className={`relative overflow-hidden rounded-2xl bg-muted ${isProfileFormat(outputFormat) ? "aspect-square" : "aspect-[9/16]"}`}>
                 <canvas
                   ref={canvasRef}
                   width={currentOutput.width}
