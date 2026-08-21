@@ -6,7 +6,7 @@ import { ChangeEvent, DragEvent, useRef, useState } from "react"
 import storyFilter from "@/assets/Filtro_Apollo_Vicz_55011_Transparente.png"
 import profileFrame from "@/assets/Moldura_Redonda_Apollo_Vicz_55011_Transparente.png"
 import duoStoryFilter from "@/assets/Filtro_Stories_Jacqueline_1520_Apollo_55011_Transparente.png"
-import duoProfileFrame from "@/assets/Moldura_Redonda_Apollo_Jacqueline_Transparente.png"
+import duoProfileFrame from "@/assets/Moldura_Redonda_Apollo_Jacqueline_Transparente-corrigida.png"
 
 const MAX_FILE_SIZE = 20 * 1024 * 1024
 const PROFILE_PHOTO_RADIUS = 440
